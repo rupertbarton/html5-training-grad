@@ -104,4 +104,6 @@ function Matcher(orderBook = new OrderBook()) {
 
 }
 
+console.log(new Matcher())
+
 module.exports = Matcher;

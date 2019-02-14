@@ -1,27 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bitcoin Exchange</title>
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
-    <style>
-        body { margin-top: 50px; }
-    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <!-- <style>
+        body {
+            margin-top: 50px;
+        }
+    </style> -->
 </head>
+
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Bitcoin Exchange</a>
+    <div class="jumbotron text-center" style="background-color:rgb(137, 137, 255);">
+        <div class="row container-fluid">
+            <div class="col-xl-1"></div>
+            <div class="col-xl-10">
+                <div class="text-center">
+                    <h1>Rupert's Amazing Trader</h1>
+                </div>
+            </div>
+
+            <div class="col-xl-1">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Change Account
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Account 1</a>
+                        <a class="dropdown-item" href="#">Account 2</a>
+                        <a class="dropdown-item" href="#">Account 3</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
-<div class="container">
-    <div class="row">
-        <h1>Mockup goes here</h1>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-1"></div>
+            <div class="col-xl-2 ">
+                <h2>Buys</h2>
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0.008</td>
+                            <td>2700</td>
+                        </tr>
+                        <tr>
+                            <td>1.089</td>
+                            <td>2700</td>
+                        </tr>
+                        <tr>
+                            <td>0.82</td>
+                            <td>2700</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>Sells</h2>
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0.008</td>
+                            <td>2700</td>
+                        </tr>
+                        <tr>
+                            <td>1.089</td>
+                            <td>2700</td>
+                        </tr>
+                        <tr>
+                            <td>0.82</td>
+                            <td>2700</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+
+            <div class="col-xl-6">
+                <img src="https://www.researchgate.net/profile/Philip_Maymin/publication/46461521/figure/fig3/AS:306069940260866@1449984168430/Some-Complex-Time-Series-The-graph-below-charts-the-first-2-9-512-time-steps-of-50-of.png"
+                    class="rounded" alt="Cinque Terre" width="960" height="540">
+            </div>
+            <div class="col-xl-2">
+                <h2>Order Form</h2>
+                <form action="/action_page.php">
+                    <div class="form-group">
+                        <label for="email">Quantity:</label>
+                        <input type="number" class="form-control" id="email" placeholder="0" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Price:</label>
+                        <input type="number" class="form-control" id="pwd" placeholder="0" name="pswd">
+                    </div>
+                    <div class="col-md-1 center-block">
+                    <div class="btn-group center-block">
+                            <button type="button" class="btn btn-primary btn-lg">Buy</button>
+                            <button type="button" class="btn btn-primary btn-lg">Sell</button>
+                          </div>
+                        </div>
+                </form>
+            </div>
+            <div class="col-xl-1"></div>
+        </div>
     </div>
-</div>
+    </div>
+
+
 </body>
+
 </html>

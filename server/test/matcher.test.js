@@ -2,22 +2,6 @@ const Matcher = require("../app/matcher");
 //const OrderBook = require("../app/orderBook");
 const Order = require("../app/order");
 
-
-
-let testMatcher;
-
-let buyOrder1;
-let buyOrder2;
-let buyOrder3;
-let buyOrder4;
-let buyOrder5;
-
-let sellOrder1;
-let sellOrder2;
-let sellOrder3;
-let sellOrder4;
-let sellOrder5;
-
 beforeEach(() => {
 
     testMatcher = new Matcher();
