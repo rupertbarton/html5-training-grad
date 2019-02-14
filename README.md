@@ -1,4 +1,6 @@
-# bitcoin-exchange-seed hkl
+
+# bitcoin-exchange-seed
+
 The starting point for the bitcoin-exchange project, containing individual client and server applications.
 Each application has their own package.json, to prevent cross-pollination of dependencies between client and server-side.
 
