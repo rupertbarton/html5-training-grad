@@ -1,5 +1,7 @@
+"use strict"
 const Order = require("../app/order");
 const OrderBook = require("../app/orderBook");
+
 
 
 function Matcher(orderBook = new OrderBook()) {
@@ -39,7 +41,7 @@ function Matcher(orderBook = new OrderBook()) {
                 this.sellOrders.push(newOrder);
             }
             else {
-                for (i in this.sellOrders) {
+                for (let i in this.sellOrders) {
                     if (this.sellOrders[i].price > newOrder.price) {
                         this.sellOrders.splice(i, 0, newOrder);
                         break
@@ -82,7 +84,7 @@ function Matcher(orderBook = new OrderBook()) {
                 this.buyOrders.push(newOrder);
             }
             else {
-                for (i in this.buyOrders) {
+                for (let i in this.buyOrders) {
                     if (this.buyOrders[i].price < newOrder.price) {
                         this.buyOrders.splice(i, 0, newOrder);
                         break
@@ -103,7 +105,5 @@ function Matcher(orderBook = new OrderBook()) {
     }
 
 }
-
-console.log(new Matcher())
 
 module.exports = Matcher;
