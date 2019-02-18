@@ -5,6 +5,7 @@
   "description": "Server-side code for bitcoin exchange",
   "author": "Scott Logic Ltd",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4"
   },
   "devDependencies": {

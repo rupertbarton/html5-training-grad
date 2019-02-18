@@ -9,6 +9,7 @@ function Matcher(orderBook = new OrderBook()) {
     this.orderBook = orderBook;
     this.buyOrders = orderBook.buy;
     this.sellOrders = orderBook.sell;
+    currentId = 0
 
     this.matcher = function (newOrder) {
 
@@ -39,6 +40,7 @@ function Matcher(orderBook = new OrderBook()) {
 
             if (this.sellOrders.length == 0) {
                 this.sellOrders.push(newOrder);
+
             }
             else {
                 for (let i in this.sellOrders) {
@@ -105,5 +107,14 @@ function Matcher(orderBook = new OrderBook()) {
     }
 
 }
+
+// let abc = new Matcher()
+
+// let a = new Order("a",10,4,"sell")
+// let b = new Order("b",1,4,"buy")
+// abc.matcher(a);
+// abc.matcher(b)
+
+// console.log (abc)
 
 module.exports = Matcher;
