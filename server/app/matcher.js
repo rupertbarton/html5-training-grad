@@ -7,10 +7,12 @@ const OrderBook = require("../app/orderBook");
 function Matcher(orderBook = new OrderBook()) {
 
     this.orderBook = orderBook;
+    
     this.buyOrders = orderBook.buy;
     this.sellOrders = orderBook.sell;
-    currentId = 0
 
+
+    //Run the matcher for an order, and sorts the result by price and then by age
     this.matcher = function (newOrder) {
 
         if (newOrder.action === "sell") {
@@ -100,6 +102,7 @@ function Matcher(orderBook = new OrderBook()) {
         }
     }
 
+    //Run the matcher for an array containing multiple orders
     this.matcherMultiple = function (newOrders) {
         for (i in newOrders) {
             this.matcher(newOrders[i]);
@@ -108,13 +111,13 @@ function Matcher(orderBook = new OrderBook()) {
 
 }
 
-// let abc = new Matcher()
+let abc = new Matcher()
 
-// let a = new Order("a",10,4,"sell")
-// let b = new Order("b",1,4,"buy")
-// abc.matcher(a);
-// abc.matcher(b)
+let a = new Order("a",10,4,"sell")
+let b = new Order("a",1,4,"buy")
+abc.matcher(a);
+abc.matcher(b);
 
-// console.log (abc)
+console.log (abc.orderBook.getAccountOrders("a"))
 
 module.exports = Matcher;
