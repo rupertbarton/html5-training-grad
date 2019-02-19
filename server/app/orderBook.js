@@ -6,7 +6,6 @@ function OrderBook(buy = [], sell = []) {
 
     //Returns a full array of all orders belonging to an account
     this.getAccountOrders = function  (accountName){
-      console.log(this.buy)
       accountOrders = []
       for (i = 0; i < this.buy.length; i++){
         if (this.buy[i].account === accountName){
