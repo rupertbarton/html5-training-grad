@@ -35,6 +35,7 @@ describe("Log Trade Ability", () => {
         testMatcher.matcher(sellOrder1)
         expect(testMatcher.tradeHistory[0].price).toBe(1);
         expect(testMatcher.tradeHistory[0].quantity).toBe(5)
+        expect(testMatcher.tradeHistory.length).toBe(1)
     });
 
     it("If a buy comes in of same price, trade is recorded", () => {
@@ -42,6 +43,7 @@ describe("Log Trade Ability", () => {
         testMatcher.matcher(buyOrder1)
         expect(testMatcher.tradeHistory[0].price).toBe(1);
         expect(testMatcher.tradeHistory[0].quantity).toBe(5)
+        expect(testMatcher.tradeHistory.length).toBe(1)
     });
 
     it("If a buy comes in higher, trade is recorded", () => {
@@ -49,6 +51,7 @@ describe("Log Trade Ability", () => {
         testMatcher.matcher(buyOrder2)
         expect(testMatcher.tradeHistory[0].price).toBe(1);
         expect(testMatcher.tradeHistory[0].quantity).toBe(5)
+        expect(testMatcher.tradeHistory.length).toBe(1)
     });
   
     it("If a sell comes in lower, trade is recorded", () => {
@@ -56,6 +59,7 @@ describe("Log Trade Ability", () => {
         testMatcher.matcher(sellOrder1)
         expect(testMatcher.tradeHistory[0].price).toBe(2);
         expect(testMatcher.tradeHistory[0].quantity).toBe(5)
+        expect(testMatcher.tradeHistory.length).toBe(1)
     });
 
     it("If a buy comes in of same price, higher quantity, trade is recorded", () => {
