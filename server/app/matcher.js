@@ -25,7 +25,7 @@ function Matcher(orderBook = new OrderBook(), tradeHistory = []) {
                         tradeHistory.push(new Trade(this.buyOrders[i].price, this.buyOrders[i].quantity))
                         newOrder.quantity -= this.buyOrders[i].quantity;
                         this.buyOrders.splice(this.buyOrders.indexOf(this.buyOrders[i]), 1)
-                        i-=1;git
+                        i-=1;
                     }
                     else if (newOrder.quantity < this.buyOrders[i].quantity) {     //New order has less quantity
                         tradeHistory.push(new Trade(this.buyOrders[i].price, newOrder.quantity))
