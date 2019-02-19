@@ -7,11 +7,11 @@ var appRouter = function (app) {
 
   abc = new Matcher()
 
-  app.get("/test", function(req, res) {
-    name = req.query.name
-    quantity = req.query.quantity
-    price = req.query.price
-    action = req.query.action
+  app.post("/test", function(req, res) {
+    name = req.body.account
+    quantity = req.body.quantity
+    price = req.body.price
+    action = req.body.action
     testOrder = new Order(name,price,quantity,action)
     abc.matcher(testOrder)
     res.status(200).send(abc.orderBook);
