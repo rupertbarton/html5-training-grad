@@ -21,19 +21,18 @@ function Matcher(orderBook = new OrderBook(), tradeHistory = []) {
             for (let i = 0; i< this.buyOrders.length; i++) {
 
                 if (newOrder.price <= this.buyOrders[i].price) {
+                    tradeHistory.push(new Trade(this.buyOrders[i].price, Math.min(this.buyOrders[i].quantity,newOrder.quantity)))
+                    
                     if (newOrder.quantity > this.buyOrders[i].quantity) {     //New order has a larger quantity
-                        tradeHistory.push(new Trade(this.buyOrders[i].price, this.buyOrders[i].quantity))
                         newOrder.quantity -= this.buyOrders[i].quantity;
                         this.buyOrders.splice(this.buyOrders.indexOf(this.buyOrders[i]), 1)
                         i-=1;
                     }
                     else if (newOrder.quantity < this.buyOrders[i].quantity) {     //New order has less quantity
-                        tradeHistory.push(new Trade(this.buyOrders[i].price, newOrder.quantity))
                         this.buyOrders[i].quantity -= newOrder.quantity;
                         return
                     }
                     else if (newOrder.quantity === this.buyOrders[i].quantity) {     //New order has same quantity
-                        tradeHistory.push(new Trade(this.buyOrders[i].price, newOrder.quantity))
                         this.buyOrders.splice(this.buyOrders.indexOf(this.buyOrders[i]), 1)
                         return
                     }
@@ -66,20 +65,20 @@ function Matcher(orderBook = new OrderBook(), tradeHistory = []) {
 
         else if (newOrder.action === "buy") {
             for (let i = 0; i< this.sellOrders.length; i++) {
+
                 if (newOrder.price >= this.sellOrders[i].price) {
+                    tradeHistory.push(new Trade(this.sellOrders[i].price, Math.min(this.sellOrders[i].quantity,newOrder.quantity)))
+
                     if (newOrder.quantity > this.sellOrders[i].quantity) {     //New order has a larger quantity
-                        tradeHistory.push(new Trade(this.sellOrders[i].price, this.sellOrders[i].quantity))
                         newOrder.quantity -= this.sellOrders[i].quantity;
                         this.sellOrders.splice(this.sellOrders.indexOf(this.sellOrders[i]), 1);
                         i-=1;
                     }
                     else if (newOrder.quantity < this.sellOrders[i].quantity) {     //New order has less quantity
-                        tradeHistory.push(new Trade(this.sellOrders[i].price, newOrder.quantity))
                         this.sellOrders[i].quantity -= newOrder.quantity;
                         return
                     }
                     else if (newOrder.quantity === this.sellOrders[i].quantity) {     //New order has same quantity
-                        tradeHistory.push(new Trade(this.sellOrders[i].price, newOrder.quantity))
                         this.sellOrders.splice(this.sellOrders.indexOf(this.sellOrders[i]), 1);
                         return
                     }
