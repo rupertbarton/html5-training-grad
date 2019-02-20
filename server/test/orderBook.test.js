@@ -8,17 +8,40 @@ beforeEach(() => {
     buyOrder2 = new Order("b", 3, 10, "buy");
     buyOrder3 = new Order("b", 2, 10, "buy");
 
+    buyOrder4 = new Order("c", 1.5, 10, "buy");
+    buyOrder5 = new Order("d", 3.99, 10, "buy");
+    buyOrder6 = new Order("e", 8.5, 10, "buy");
+
     sellOrder1 = new Order("a", 1, 10, "sell");
     sellOrder2 = new Order("b", 3, 10, "sell");
     sellOrder3 = new Order("b", 2, 10, "sell");
+
+    sellOrder4 = new Order("c", .1, 10, "sell");
+    sellOrder5 = new Order("d", 3.01, 10, "sell");
+    sellOrder6 = new Order("e", 9, 10, "sell");
 
     testBookBuy = new orderBook([buyOrder1, buyOrder2, buyOrder3],[])
     
     testBookSell = new orderBook([],[sellOrder1, sellOrder2, sellOrder3])
 
-    testBookCombined = new orderBook(
+    testAccountBook = new orderBook(
         [buyOrder1, buyOrder2, buyOrder3],
         [sellOrder1, sellOrder2, sellOrder3]
+    )
+
+    testBuyAggregateOrder = new orderBook(
+        [buyOrder6,buyOrder5,buyOrder2,buyOrder3,buyOrder4,buyOrder1],
+        []
+    )
+
+    testSellAggregateOrder = new orderBook(
+        [],
+        [sellOrder4,sellOrder1,sellOrder3,sellOrder2,sellOrder5,sellOrder6]
+    )
+
+    testAggregateOrder = new orderBook(
+        [buyOrder6,buyOrder5,buyOrder2,buyOrder3,buyOrder4,buyOrder1],
+        [sellOrder4,sellOrder1,sellOrder3,sellOrder2,sellOrder5,sellOrder6]
     )
 
 });
@@ -34,6 +57,26 @@ describe("getAccountOrders Function", () => {
     });
 
     it("Can get account orders", () => {
-        expect(testBookCombined.getAccountOrders("b").length).toBe(4);
+        expect(testAccountBook.getAccountOrders("b").length).toBe(4);
     });
+
+    describe("getAggregatedOrders Function", () => {
+
+        it("Aggregate Buys", () => {
+        //console.log(testAggregateOrder.createAgreggatedOrderBook(1))
+        expect(testBuyAggregateOrder.createAgreggatedOrderBook(1)).toEqual([ [ [8,10], [3,20], [2,10], [1,20] ],  [] ]);
+        });
+    
+        it("AggregateSells", () => {
+        //console.log(testSellAggregateOrder.createAgreggatedOrderBook(1))
+        expect(testSellAggregateOrder.createAgreggatedOrderBook(1)).toEqual([ [], [[1,20], [2,10], [3,10], [4,10], [9,10] ] ]);
+        });
+    })
+    
+        it("Aggregate both Buys and Sells", () => {
+        //console.log(testAggregateOrder.createAgreggatedOrderBook(1))
+        expect(testAggregateOrder.createAgreggatedOrderBook(1)).toEqual([ [ [8,10], [3,20], [2,10], [1,20] ], [[1,20], [2,10], [3,10], [4,10], [9,10] ] ]);
+        });
+    
+    
 })
