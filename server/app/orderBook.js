@@ -3,9 +3,9 @@ const Order = require("../app/order");
 function OrderBook(buy = [], sell = []) {
   this.buy = buy;
   this.sell = sell;
-  let buyAggregatedOrderBook = [];
-  let sellAggregatedOrderBook = [];
-  let aggregatedOrderBook = [];
+  // let buyAggregatedOrderBook = [];
+  // let sellAggregatedOrderBook = [];
+  // let aggregatedOrderBook = [];
 
   //Returns a full array of all orders belonging to an account
   this.getAccountOrders = function (accountName) {
@@ -25,9 +25,9 @@ function OrderBook(buy = [], sell = []) {
   }
 
   this.createAgreggatedOrderBook = function (aggregation) {
-  buyAggregatedOrderBook = [];
-    sellAggregatedOrderBook = [];
-    aggregatedOrderBook = [];
+  let buyAggregatedOrderBook = [];
+    let sellAggregatedOrderBook = [];
+    let aggregatedOrderBook = [];
     let currentRangeStart = 0
     for (i = 0; i < buy.length; i++) {
 
