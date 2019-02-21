@@ -2,25 +2,28 @@ const Matcher = require("../app/matcher");
 const Order = require("../app/order");
 var appRouter = function (app) {
 
-    mainMatcher = new Matcher();
 
-  app.post("/newOrder", function(req, res) {      //add new order
-    name = req.body.account
-    quantity = req.body.quantity
-    price = req.body.price
-    action = req.body.action
-    newOrder = new Order(name,price,quantity,action)
-    mainMatcher.matcher(newOrder)
-    res.status(200).send([mainMatcher.orderBook , mainMatcher.orderBook.getAccountOrders(name) , mainMatcher.tradeHistory]);
+    app.get("/", function (req, res) {       //Load all orders and trade history
+    //aggregate = Number(req.body.account) || 0.01;
+    res.status(200).send([mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.tradeHistory]);
   });
 
-  app.get("/", function(req, res) {       //Load all orders and trade history
-    res.status(200).send([mainMatcher.orderBook , mainMatcher.tradeHistory]);
-  });
-
-  app.get("/accountOrders", function(req, res) {      //Load account info
-    name = req.query.account
+  app.get("/accountOrders", function (req, res) {      //Load account info
+    let name = req.query.account;
     res.status(200).send(mainMatcher.orderBook.getAccountOrders(name));
+  });
+
+  app.post("/newOrder", function (req, res) {      //add new order
+    name = req.body.account;
+    quantity = Number(req.body.quantity);
+    price = Number(req.body.price);
+    action = req.body.action;
+    aggregate = Number(req.body.aggregate) || 0.01;
+    
+    newOrder = new Order(name, price, quantity, action);
+    mainMatcher.matcher(newOrder);
+
+    res.status(200).send([mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.orderBook.getAccountOrders(name), mainMatcher.tradeHistory]);
   });
 }
 
