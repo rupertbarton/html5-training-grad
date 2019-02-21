@@ -63,20 +63,26 @@ describe("getAccountOrders Function", () => {
     describe("getAggregatedOrders Function", () => {
 
         it("Aggregate Buys", () => {
-        //console.log(testAggregateOrder.createAgreggatedOrderBook(1))
-        expect(testBuyAggregateOrder.createAgreggatedOrderBook(1)).toEqual([ [ [8,10], [3,20], [2,10], [1,20] ],  [] ]);
+        expect(testBuyAggregateOrder.createAgreggatedOrderBook(1)).toEqual([ [ [8.00,10], [3.00,20], [2.00,10], [1.00,20] ],  [] ]);
         });
     
         it("AggregateSells", () => {
         //console.log(testSellAggregateOrder.createAgreggatedOrderBook(1))
-        expect(testSellAggregateOrder.createAgreggatedOrderBook(1)).toEqual([ [], [[1,20], [2,10], [3,10], [4,10], [9,10] ] ]);
+        expect(testSellAggregateOrder.createAgreggatedOrderBook(1)).toEqual([ [], [[1.00,20], [2.00,10], [3.00,10], [4.00,10], [9.00,10] ] ]);
         });
     })
     
         it("Aggregate both Buys and Sells", () => {
-        //console.log(testAggregateOrder.createAgreggatedOrderBook(1))
-        expect(testAggregateOrder.createAgreggatedOrderBook(1)).toEqual([ [ [8,10], [3,20], [2,10], [1,20] ], [[1,20], [2,10], [3,10], [4,10], [9,10] ] ]);
+        expect(testAggregateOrder.createAgreggatedOrderBook(1)).toEqual([ [ [8.00,10], [3.00,20], [2.00,10], [1.00,20] ], [[1.00,20], [2.00,10], [3.00,10], [4.00,10], [9.00,10] ] ]);
         });
+
+        it("3917.99 buy...", () => {
+        rogue = new Order("z", 3917.99, 10, "buy");
+        rogueBook = new orderBook([rogue],[]);
+        expect(rogueBook.createAgreggatedOrderBook(0.01)).toEqual([ [[3917.99,10]],[] ]);
+        });
+
+
     
     
 })

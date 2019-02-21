@@ -3,9 +3,7 @@ const Order = require("../app/order");
 function OrderBook(buy = [], sell = []) {
   this.buy = buy;
   this.sell = sell;
-  // let buyAggregatedOrderBook = [];
-  // let sellAggregatedOrderBook = [];
-  // let aggregatedOrderBook = [];
+
 
   //Returns a full array of all orders belonging to an account
   this.getAccountOrders = function (accountName) {
@@ -25,37 +23,36 @@ function OrderBook(buy = [], sell = []) {
   }
 
   this.createAgreggatedOrderBook = function (aggregation) {
-  let buyAggregatedOrderBook = [];
+    let buyAggregatedOrderBook = [];
     let sellAggregatedOrderBook = [];
     let aggregatedOrderBook = [];
     let currentRangeStart = 0
     for (i = 0; i < buy.length; i++) {
 
-        if(buy[i].price >= (currentRangeStart) && buyAggregatedOrderBook.length > 0){
-          buyAggregatedOrderBook[buyAggregatedOrderBook.length - 1][1] += buy[i].quantity
-        }
-        else{
-          currentRangeStart = Math.floor(buy[i].price / aggregation) * aggregation;
-          buyAggregatedOrderBook.push([currentRangeStart, buy[i].quantity])
-        }     
+      if (buy[i].price >= (currentRangeStart) && buyAggregatedOrderBook.length > 0) {
+        buyAggregatedOrderBook[buyAggregatedOrderBook.length - 1][1] += buy[i].quantity
       }
-
-      currentRangeStart = 0
-      for (i = 0; i < sell.length; i++) {
-
-
-          if(sell[i].price <= (currentRangeStart) && sellAggregatedOrderBook.length > 0){
-            sellAggregatedOrderBook[sellAggregatedOrderBook.length - 1][1] += sell[i].quantity
-          }
-          else{
-            currentRangeStart = Math.ceil(sell[i].price / aggregation) * aggregation;
-            sellAggregatedOrderBook.push([currentRangeStart, sell[i].quantity])
-          }        
-        }
-
-        aggregatedOrderBook = [buyAggregatedOrderBook, sellAggregatedOrderBook]
-        return aggregatedOrderBook
+      else {
+        currentRangeStart = Math.floor((buy[i].price + 0.001) / aggregation) * aggregation;
+        buyAggregatedOrderBook.push([Number(currentRangeStart.toFixed(2)), buy[i].quantity])
       }
+    }
+
+    currentRangeStart = 0
+    for (i = 0; i < sell.length; i++) {
+      
+      if (sell[i].price <= (currentRangeStart) && sellAggregatedOrderBook.length > 0) {
+        sellAggregatedOrderBook[sellAggregatedOrderBook.length - 1][1] += sell[i].quantity
+      }
+      else {
+        currentRangeStart = Math.ceil(sell[i].price / aggregation) * aggregation;
+        sellAggregatedOrderBook.push([Number(currentRangeStart.toFixed(2)), sell[i].quantity])
+      }
+    }
+
+    aggregatedOrderBook = [buyAggregatedOrderBook, sellAggregatedOrderBook]
+    return aggregatedOrderBook
+  }
 
   this.getAggregatedOrderBook = function () {
     return aggregatedOrderBook;
