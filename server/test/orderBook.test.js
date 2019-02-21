@@ -79,10 +79,25 @@ describe("getAccountOrders Function", () => {
         it("3917.99 buy...", () => {
         rogue = new Order("z", 3917.99, 10, "buy");
         rogueBook = new orderBook([rogue],[]);
-        expect(rogueBook.createAgreggatedOrderBook(0.01)).toEqual([ [[3917.99,10]],[] ]);
+        expect(rogueBook.createAgreggatedOrderBook(0.01)).toEqual([ [[3917.99,10]],[]]);
+        });
+        
+        it("100.99 buy...", () => {
+        rogue = new Order("z", 100.99, 10, "buy");
+        rogueBook = new orderBook([rogue],[]);
+        expect(rogueBook.createAgreggatedOrderBook(0.01)).toEqual([ [[100.99,10]],[]]);
         });
 
+        it("3917.99 sell...", () => {
+        rogue = new Order("z", 3917.99, 10, "buy");
+        rogueBook = new orderBook([],[rogue]);
+        expect(rogueBook.createAgreggatedOrderBook(0.01)).toEqual([ [],[[3917.99,10]]]);
+        });
+        
+        it("100.99 sell...", () => {
+        rogue = new Order("z", 100.99, 10, "buy");
+        rogueBook = new orderBook([],[rogue]);
+        expect(rogueBook.createAgreggatedOrderBook(0.01)).toEqual([ [],[[100.99,10]]]);
+        });
 
-    
-    
 })
