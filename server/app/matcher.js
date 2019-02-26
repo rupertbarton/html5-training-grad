@@ -25,7 +25,7 @@ function Matcher(orderBook = new OrderBook(), tradeHistory = []) {
                     
                     if (newOrder.quantity > this.buyOrders[i].quantity) {     //New order has a larger quantity
                         newOrder.quantity -= this.buyOrders[i].quantity;
-                        this.buyOrders.splice(this.buyOrders.indexOf(this.buyOrders[i]), 1)
+                        this.buyOrders.splice(this.buyOeslrders.indexOf(this.buyOrders[i]), 1)
                         i-=1;
                     }
                     else if (newOrder.quantity < this.buyOrders[i].quantity) {     //New order has less quantity
