@@ -2,10 +2,15 @@ const Matcher = require("../app/matcher");
 const Order = require("../app/order");
 var appRouter = function (app) {
 
+  const mainMatcher = new Matcher()
+
+  let c = new Order("a",1,5,"sell")
+
+  mainMatcher.matcher(c)
 
     app.get("/", function (req, res) {       //Load all orders and trade history
     //aggregate = Number(req.body.account) || 0.01;
-    res.status(200).send([mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.tradeHistory]);
+    res.status(200).send([mainMatcher.orderBook.createAgreggatedOrderBook(0.01), mainMatcher.tradeHistory]);
   });
 
   app.get("/accountOrders", function (req, res) {      //Load account info

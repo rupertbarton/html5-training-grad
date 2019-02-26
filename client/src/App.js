@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import logo from '../logo.svg';
+import logo from './logo.svg';
 import './App.css';
+import AggregatedOrderBook from'./components/AggregatedOrderBook'
 
 export class App extends Component {
   render() {
@@ -12,6 +13,7 @@ export class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React {this.props.name}</h1>
         </header>
+        <AggregatedOrderBook />
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
