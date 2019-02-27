@@ -1,36 +1,38 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 export class AggregatedOrderBook extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { order: [1, 2, 3, 4, 5] };
+
+  }
+
+  componentDidMount() {
+    // console.log("hawo");
+    // let stuff = grabData();
+    // console.log("stuff = " + JSON.stringify(stuff));
+
+    // console.log(stuff)
+  }
+
+
   render() {
     return (
       <div className="AggregatedOrderBook">
-        <h1>{console.log(grabData())}</h1>
+        <h1>{this.state.order}</h1>
+        <p>{this.props.name}</p>
       </div>
     );
   }
 }
-  function grabData() {
-    fetch('http://localhost:3001/')
-  .then(
-    function(response) {
-      if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' +
-          response.status);
-        return;
-      }
-      // Examine the text in the response
-      let finalData = response.json().then(function(data) {
-        console.log(data)
-        return data
-      });
-      console.log(finalData)
-      return finalData
-    }
-  )
-  .catch(function(err) {
-    console.log('Fetch Error :-S', err);
-  });
-  }
 
+function mapStateToProps(state) {
+  return {
+    name: state.example.name
+  };
+}
 
-export default AggregatedOrderBook;
+export default connect(mapStateToProps)(AggregatedOrderBook);
+// export default AggregatedOrderBook;

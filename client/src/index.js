@@ -6,7 +6,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 import configureStore from './store/configure-store';
-const store = configureStore({ example: { name: "Rupert" }});
+const store = configureStore({ example: { name: "Rupert" }}); //sets initial state
 
 ReactDOM.render(
   <Provider store={store}>
