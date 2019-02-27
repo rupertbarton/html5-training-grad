@@ -9,15 +9,6 @@ export class AggregatedOrderBook extends Component {
 
   }
 
-  componentDidMount() {
-    // console.log("hawo");
-    // let stuff = grabData();
-    // console.log("stuff = " + JSON.stringify(stuff));
-
-    // console.log(stuff)
-  }
-
-
   render() {
     return (
       <div className="AggregatedOrderBook">
@@ -30,7 +21,7 @@ export class AggregatedOrderBook extends Component {
 
 function mapStateToProps(state) {
   return {
-    name: state.example.name
+    // name: state.app.name
   };
 }
 
