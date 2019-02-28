@@ -1,13 +1,33 @@
-import { GET_ORDER_BOOK } from './actions';
+import * as actions from './actions';
+import { AggregatedOrderBook } from './AggregatedOrderBook';
 
-export default (state = {}, action) => {
-    console.log(action)
+const INITIAL_STATE = {
+    aggregatedOrderBook: [],
+    fetching: false,
+    fetched: false,
+};
+
+export default (state =  INITIAL_STATE, action) => {
     switch (action.type) {
-        case GET_ORDER_BOOK:
+        case actions.GET_ORDER_BOOK_START:
             return {
                 ...state,
-                name: state.name + "a"
+                fetching: true
             };
+        case actions.GET_ORDER_BOOK_RECEIVED: 
+        return {
+                ...state,
+                fetching: false,
+                fetched: true,
+
+                aggregatedOrderBook: action.data,
+            }
+        case actions.GET_ORDER_BOOK_ERROR:
+            return {
+                ...state,
+                fetching: false,
+                error: action.data,
+            }
         default:
             return state;
     }

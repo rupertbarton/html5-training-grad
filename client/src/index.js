@@ -6,10 +6,7 @@ import App from './App/App';
 import registerServiceWorker from './registerServiceWorker';
 
 import configureStore from './store/configure-store';
-const store = configureStore({ 
-  app: { name: "Rupert" },
-  aggregatedOrderBook: {aggregatedOrderBook: 0}
-}); //sets initial state
+const store = configureStore(); //sets initial state
 
 ReactDOM.render(
   <Provider store={store}>

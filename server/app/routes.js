@@ -4,9 +4,20 @@ var appRouter = function (app) {
 
   const mainMatcher = new Matcher()
 
-  let c = new Order("a",1,5,"sell")
-
+  let c = new Order("a",5,5,"sell")
+  let d = new Order("a",1000,5,"sell")
+  
+  let e = new Order("a",4.5,5,"buy")
+  let f = new Order("a",1,5,"buy")
   mainMatcher.matcher(c)
+  mainMatcher.matcher(c)
+  mainMatcher.matcher(c)
+  mainMatcher.matcher(d)
+  mainMatcher.matcher(d)
+  mainMatcher.matcher(e)
+  mainMatcher.matcher(e)
+  mainMatcher.matcher(f)
+
 
     app.get("/", function (req, res) {       //Load all orders and trade history
     //aggregate = Number(req.body.account) || 0.01;

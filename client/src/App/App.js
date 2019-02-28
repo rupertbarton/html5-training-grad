@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import axios from "axios";
-import thunk from redux-thunk
+import thunk from "redux-thunk";
 // import logo from './logo.svg';
 import './App.css';
 import AggregatedOrderBook from'../components/AggregatedOrderBook/AggregatedOrderBook'
-import { getOrderBook } from '../components/AggregatedOrderBook/actions';
+import { getOrderBookStart, getOrderBookReceived, getOrderBookError} from '../components/AggregatedOrderBook/actions';
 
 export class App extends Component {
   render() {
@@ -25,10 +25,8 @@ export class App extends Component {
   }
 }
 
-console.log(axios.get("http://localhost:3001/"))
-
 App.propTypes = {
-  name: PropTypes.string.isRequired
+  // name: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state) {
@@ -39,10 +37,16 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getOrders: () => {
-      dispatch(getOrderBook())
+  //   getOrders: () => {
+  //     dispatch(getOrderBookStart())
+  //     axios.get("http://localhost:3001/").then(
+  //       (response) => {
+  //         dispatch(getOrderBookReceived(response.data))
+  //       }
+  //     ).catch((err) => {getOrderBookError()}
+  //     )
     }
-  }
+  // }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
