@@ -9,7 +9,6 @@ export function getOrderBookStart() {
 export const GET_ORDER_BOOK_RECEIVED = 'order-book2';
 
 export function getOrderBookReceived(payload) {
-    console.log("Recieved action initiated")
     return {
         type: GET_ORDER_BOOK_RECEIVED,
         data: payload

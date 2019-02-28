@@ -20,10 +20,12 @@ export class AggregatedOrderBook extends Component {
   }
 
   render() {
-    console.log(this.props.aggregatedOrderBook)
+    console.log(this.props.aggregatedOrderBook[0])
     if(this.props.fetched){
-      for (let i=0; i<this.props.aggregatedOrderBook[0])
-
+      for (let i=0; i<this.props.aggregatedOrderBook[0][0].length; i++){
+console.log(this.props.aggregatedOrderBook[0][0][i][0])
+      }
+console.log(this.props.aggregatedOrderBook)
     return (
       <div className="AggregatedOrderBook">
       <h1>{this.state.order}</h1>
