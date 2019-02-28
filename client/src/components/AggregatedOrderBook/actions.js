@@ -11,7 +11,7 @@ export const GET_ORDER_BOOK_RECEIVED = 'order-book2';
 export function getOrderBookReceived(payload) {
     return {
         type: GET_ORDER_BOOK_RECEIVED,
-        data: payload
+        payload
     }
 }
 

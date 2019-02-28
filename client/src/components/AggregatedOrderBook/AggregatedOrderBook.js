@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import axios from "axios";
 import thunk from "redux-thunk";
-import { getOrderBookStart, getOrderBookReceived, getOrderBookError} from './actions';
+import { getOrderBookStart, getOrderBookReceived, getOrderBookError } from './actions';
+import DataTable from '../DataTable/DataTable';
 
 
 export class AggregatedOrderBook extends Component {
@@ -13,41 +14,41 @@ export class AggregatedOrderBook extends Component {
     this.state = { order: [1, 2, 3, 4, 5] };
     this.props.getOrders()
     let n = 10;
-    let buyQuantity = []
-    let buyPrice = []
-    let sellQuantity = []
-    let sellPrice = []
+    this.buyQuantity = []
+    this.buyPrice = []
+    this.sellQuantity = []
+    this.sellPrice = []
   }
 
   render() {
     console.log(this.props.aggregatedOrderBook[0])
-    if(this.props.fetched){
-      for (let i=0; i<this.props.aggregatedOrderBook[0][0].length; i++){
-console.log(this.props.aggregatedOrderBook[0][0][i][0])
-      }
-console.log(this.props.aggregatedOrderBook)
-    return (
-      <div className="AggregatedOrderBook">
-      <h1>{this.state.order}</h1>
-      <p>{this.props.aggregatedOrderBook}
-      {String(this.props.fetched)}</p>
-      </div>
-    );
+    if (this.props.fetched) {
+      return (
+        <div className="AggregatedOrderBook">
+        <DataTable headings={["Price", "Quantity", "My Share"]} rows={this.props.aggregatedOrderBook[0][1].reverse()} />
+
+        <DataTable headings={["Price", "Quantity"]} rows={this.props.aggregatedOrderBook[0][0]} />
+
+        </div>
+      );
     }
-    else{
-      return(
+    else if(this.props.fetching) {
+      return (
         <p>LOADING.....</p>
       )
     }
+    else{
+      return(<p>Error</p>)
+    }
   }
-  }
+}
 
 
 function mapStateToProps(state) {
-  console.log(state.AggregatedOrderBook.aggregatedOrderBook)
   return {
     aggregatedOrderBook: state.AggregatedOrderBook.aggregatedOrderBook,
-    fetched: state.AggregatedOrderBook.fetched
+    fetched: state.AggregatedOrderBook.fetched,
+    fetching: state.AggregatedOrderBook.fetching
   };
 }
 
@@ -59,7 +60,7 @@ const mapDispatchToProps = (dispatch) => {
         (response) => {
           dispatch(getOrderBookReceived(response.data))
         }
-      ).catch((err) => {getOrderBookError()}
+      ).catch((err) => { getOrderBookError() }
       )
     }
   }

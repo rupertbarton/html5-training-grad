@@ -6,6 +6,7 @@ import thunk from "redux-thunk";
 // import logo from './logo.svg';
 import './App.css';
 import AggregatedOrderBook from'../components/AggregatedOrderBook/AggregatedOrderBook'
+import AccountSelector from'../components/AccountSelector/AccountSelector'
 import { getOrderBookStart, getOrderBookReceived, getOrderBookError} from '../components/AggregatedOrderBook/actions';
 
 export class App extends Component {
@@ -16,7 +17,9 @@ export class App extends Component {
         <header className="App-header">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className="App-title">{this.props.name}'s Amazing Trader</h1>
-          <button className = "change-accounts-button">Change Accounts</button>
+          <div className = "App-change-accounts">
+          <AccountSelector />
+          </div>
         </header>
 
         <AggregatedOrderBook name={this.props.name} />

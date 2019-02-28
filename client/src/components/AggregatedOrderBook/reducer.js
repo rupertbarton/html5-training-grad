@@ -19,7 +19,7 @@ export default (state =  INITIAL_STATE, action) => {
                 ...state,
                 fetching: false,
                 fetched: true,
-                aggregatedOrderBook: action.data,
+                aggregatedOrderBook: action.payload,
             }
         case actions.GET_ORDER_BOOK_ERROR:
             return {

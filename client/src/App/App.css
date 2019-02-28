@@ -27,7 +27,7 @@
   to { transform: rotate(360deg); }
 }
 
-.change-accounts-button {
+.App-change-accounts {
   position: absolute;
   right: 100px;
   padding: 10px;
