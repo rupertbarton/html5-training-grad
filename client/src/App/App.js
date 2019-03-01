@@ -8,6 +8,7 @@ import './App.css';
 import AggregatedOrderBook from'../components/AggregatedOrderBook/AggregatedOrderBook'
 import AccountSelector from'../components/AccountSelector/AccountSelector'
 import { getOrderBookStart, getOrderBookReceived, getOrderBookError} from '../components/AggregatedOrderBook/actions';
+import { AccountAdder } from '../components/AccountAdd/AccountAdder';
 
 export class App extends Component {
   render() {
@@ -18,7 +19,8 @@ export class App extends Component {
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className="App-title">{this.props.name}'s Amazing Trader</h1>
           <div className = "App-change-accounts">
-          <AccountSelector />
+          <AccountAdder />
+          {/* <AccountSelector /> */}
           </div>
         </header>
 

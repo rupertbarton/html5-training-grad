@@ -22,7 +22,7 @@ export class AccountSelector extends Component {
           Change Account
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Account 1</a>
+          <a class="dropdown-item" href="#" value = "abcdef">Account 1</a>
           <a class="dropdown-item" href="#">Account 2</a>
           <a class="dropdown-item" href="#">Account 3</a>
         </div>

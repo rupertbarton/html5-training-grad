@@ -1,5 +1,4 @@
 import * as actions from './actions';
-import { AggregatedOrderBook } from './AggregatedOrderBook';
 
 const INITIAL_STATE = {
     aggregatedOrderBook: [],
