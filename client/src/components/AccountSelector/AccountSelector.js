@@ -1,48 +1,48 @@
-// import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
-// import axios from "axios";
-// import thunk from "redux-thunk";
-// // import { getOrderBookStart, getOrderBookReceived, getOrderBookError } from './actions';
-// // import DataTable from '../DataTable/DataTable';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+// import { getOrderBookStart, getOrderBookReceived, getOrderBookError } from './actions';
+// import DataTable from '../DataTable/DataTable';
+
+class AccountSelector extends Component {
+
+  constructor(props) {
+    super(props);
+
+  }
+
+  render() {
+    return (
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Change Account
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownList" >
+          {this.props.accounts.map(account => (
+            <a class="dropdown-item" href="#" ref={ this.value = {account} } onClick={ () => this.handleAdd()}>{account}</a>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  handleAdd(value){
+    console.log(this.value.account)
+
+  }
+}
 
 
+function mapStateToProps(state) {
+  return {
+    accounts: state.Accounts.accounts
+  };
+}
 
-// export class AccountSelector extends Component {
-
-//   constructor(props) {
-//     super(props);
-
-//   }
-
-//   render() {
-//       return(
-//         <div class="dropdown">
-//         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-//           Change Account
-//         </button>
-//         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-//           <a class="dropdown-item" href="#" value = "abcdef">Account 1</a>
-//           <a class="dropdown-item" href="#">Account 2</a>
-//           <a class="dropdown-item" href="#">Account 3</a>
-//         </div>
-//       </div>
-//       )
-
-//   }
-// }
-
-
-// function mapStateToProps(state) {
-//   return {
-//   };
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
+const mapDispatchToProps = (dispatch) => {
+  return {
     
-//   }
-// }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(AccountSelector);
-// // export default AggregatedOrderBook;
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountSelector);

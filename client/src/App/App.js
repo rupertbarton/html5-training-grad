@@ -6,9 +6,9 @@ import {connect} from 'react-redux';
 // import logo from './logo.svg';
 import './App.css';
 import AggregatedOrderBook from'../components/AggregatedOrderBook/AggregatedOrderBook'
-// import AccountSelector from'../components/AccountSelector/AccountSelector'
 // import { getOrderBookStart, getOrderBookReceived, getOrderBookError} from '../components/AggregatedOrderBook/actions';
-import { AccountAdder } from '../components/AccountAdd/AccountAdder';
+import AccountAdder from '../components/AccountAdd/AccountAdd';
+import AccountSelector from'../components/AccountSelector/AccountSelector'
 
 export class App extends Component {
   render() {
@@ -20,7 +20,7 @@ export class App extends Component {
           <h1 className="App-title">{this.props.name}'s Amazing Trader</h1>
           <div className = "App-change-accounts">
           <AccountAdder />
-          {/* <AccountSelector /> */}
+          <AccountSelector />
           </div>
         </header>
 
