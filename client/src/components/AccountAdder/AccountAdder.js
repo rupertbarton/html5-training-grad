@@ -14,10 +14,9 @@ export class AccountAdder extends Component {
     return(
       <div>
         <input ref={ this.inputRef } />
-        <button type="button" onClick={ () => {this.handleAdd()}}>Add Account</button>
+        <button type="button" onClick={ () => this.handleAdd()}>Add Account</button>
         </div>
-      )
-      
+      )  
     }
     
     handleAdd(){
@@ -26,15 +25,13 @@ export class AccountAdder extends Component {
     
 }
 
-function mapStateToProps(state) {
-  return {
-  };
-}
+const mapStateToProps = state => ({});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addAccount: value => dispatch(actions.addAccount(value)),
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  addAccount: data => dispatch(actions.addAccount(data)) 
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountAdder);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AccountAdder);

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import axios from "axios";
-import thunk from "redux-thunk";
+// import axios from "axios";
+// import thunk from "redux-thunk";
 // import logo from './logo.svg';
 import './App.css';
 import AggregatedOrderBook from'../components/AggregatedOrderBook/AggregatedOrderBook'
-import AccountSelector from'../components/AccountSelector/AccountSelector'
-import { getOrderBookStart, getOrderBookReceived, getOrderBookError} from '../components/AggregatedOrderBook/actions';
+// import AccountSelector from'../components/AccountSelector/AccountSelector'
+// import { getOrderBookStart, getOrderBookReceived, getOrderBookError} from '../components/AggregatedOrderBook/actions';
 import { AccountAdder } from '../components/AccountAdd/AccountAdder';
 
 export class App extends Component {
