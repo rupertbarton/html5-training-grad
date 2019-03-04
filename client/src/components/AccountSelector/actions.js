@@ -1,6 +1,7 @@
-export const ADD_ACCOUNT = 'ADD_ACCOUNT';
+export const CHANGE_ACCOUNT = 'CHANGE_ACCOUNT';
 
-export const chnageAccount = (value) => ({
+export const changeAccount = (value) => (
+{
     type: CHANGE_ACCOUNT,
     value
 });

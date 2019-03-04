@@ -17,7 +17,8 @@ export class App extends Component {
       
         <header className="App-header">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <h1 className="App-title">{this.props.name}'s Amazing Trader</h1>
+          <h1 className="App-title">Rupert's Amazing Trader</h1>
+          <h2 className="Account-name">AccountName: {this.props.currentAccount}</h2>
           <div className = "App-change-accounts">
           <AccountAdder />
           <AccountSelector />
@@ -36,7 +37,7 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    // name: state.app.name
+    currentAccount: state.AccountSelector.currentAccount
   };
 }
 

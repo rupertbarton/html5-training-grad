@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { getOrderBookStart, getOrderBookReceived, getOrderBookError } from './actions';
+import {changeAccount} from './actions';
 // import DataTable from '../DataTable/DataTable';
 
 class AccountSelector extends Component {
@@ -27,7 +27,7 @@ class AccountSelector extends Component {
 
   handleAdd(value){
     console.log(this.value.account)
-
+  this.props.changeAccount(this.value.account)
   }
 }
 
@@ -40,8 +40,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    
-
+    changeAccount: (value) => {dispatch(changeAccount(value))}
   }
 }
 

@@ -5,14 +5,12 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
+    console.log("heyewarhgjna.ewlrgnae.lrnglaerg")
     switch(action.type){
-        case actions.ADD_ACCOUNT:
+        case actions.CHANGE_ACCOUNT:
             return {
                 ...state,
-                accounts: [
-                    ...state.accounts,
-                    action.value
-                ]
+                currentAccount: action.value
             };
         default:
             return state;

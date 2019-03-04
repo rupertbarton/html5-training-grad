@@ -20,7 +20,7 @@ var appRouter = function (app) {
 
 
     app.get("/", function (req, res) {       //Load all orders and trade history
-    //aggregate = Number(req.body.account) || 0.01;
+    aggregate = Number(req.query.aggregate) || 0.01;
     res.status(200).send([mainMatcher.orderBook.createAgreggatedOrderBook(0.01), mainMatcher.tradeHistory]);
   });
 
