@@ -1,29 +1,28 @@
 import * as actions from './actions';
 
 const INITIAL_STATE = {
-    AccountOrderBook: [],
-    fetching: false,
-    fetched: false,
+    delivering: false,
+    delivered: false,
 };
 
 export default (state =  INITIAL_STATE, action) => {
     switch (action.type) {
-        case actions.GET_ACCOUNT_ORDER_BOOK_START:
+        case actions.SEND_NEW_ORDER_START:
             return {
                 ...state,
-                fetching: true
+                delivering: true
             };
-        case actions.GET_ACCOUNT_ORDER_BOOK_RECEIVED: 
+        case actions.NEW_ORDER_SENT: 
         return {
                 ...state,
-                fetching: false,
-                fetched: true,
-                AccountOrderBook: action.payload,
+                delivering: false,
+                delivered: true,
+                aggregatedOrderBook: action.payload,
             }
-        case actions.GET_ACCOUNT_ORDER_BOOK_ERROR:
+        case actions.SEND_NEW_ORDER_ERROR:
             return {
                 ...state,
-                fetching: false,
+                delivering: false,
                 error: action.data,
             }
         default:

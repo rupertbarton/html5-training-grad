@@ -1,25 +1,25 @@
-export const GET_ORDER_BOOK_START = 'order-book';
+export const GET_ACCOUNT_ORDER_BOOK_START = 'order-book4';
 
 export function getOrderBookStart() {
     return {
-        type: GET_ORDER_BOOK_START,
+        type: GET_ACCOUNT_ORDER_BOOK_START,
     }
 }
 
-export const GET_ORDER_BOOK_RECEIVED = 'order-book2';
+export const GET_ACCOUNT_ORDER_BOOK_RECEIVED = 'order-book5';
 
 export function getOrderBookReceived(payload) {
     return {
-        type: GET_ORDER_BOOK_RECEIVED,
+        type: GET_ACCOUNT_ORDER_BOOK_RECEIVED,
         payload
     }
 }
 
-export const GET_ORDER_BOOK_ERROR = 'order-book3';
+export const GET_ACCOUNT_ORDER_BOOK_ERROR = 'order-book6';
 
 export function getOrderBookError(err) {
     return {
-        type: GET_ORDER_BOOK_ERROR,
+        type: GET_ACCOUNT_ORDER_BOOK_ERROR,
         data: err
     }
 }

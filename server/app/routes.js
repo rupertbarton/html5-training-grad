@@ -26,6 +26,8 @@ var appRouter = function (app) {
 
   app.get("/accountOrders", function (req, res) {      //Load account info
     let name = req.query.account;
+    console.log("Sending Account Orders for account: " + name)
+    console.log(mainMatcher.orderBook.getAccountOrders(name))
     res.status(200).send(mainMatcher.orderBook.getAccountOrders(name));
   });
 
@@ -39,7 +41,7 @@ var appRouter = function (app) {
     newOrder = new Order(name, price, quantity, action);
     mainMatcher.matcher(newOrder);
 
-    res.status(200).send([mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.orderBook.getAccountOrders(name), mainMatcher.tradeHistory]);
+    res.status(201).send([mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.orderBook.getAccountOrders(name), mainMatcher.tradeHistory]);
   });
 }
 

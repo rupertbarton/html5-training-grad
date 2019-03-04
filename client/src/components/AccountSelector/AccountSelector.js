@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {changeAccount} from './actions';
+import {changeAccount, getOrderBookStart, getOrderBookReceived, getOrderBookError } from './actions';
 // import DataTable from '../DataTable/DataTable';
+import axios from "axios";
 
 class AccountSelector extends Component {
 
@@ -18,16 +19,16 @@ class AccountSelector extends Component {
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownList" >
           {this.props.accounts.map(account => (
-            <a class="dropdown-item" href="#" ref={ this.value = {account} } onClick={ () => this.handleAdd()}>{account}</a>
+            <a class="dropdown-item" href="#" ref={ this.value = {account} } onClick={ () => this.handleChange(account)}>{account}</a>
           ))}
         </div>
       </div>
     )
   }
 
-  handleAdd(value){
-    console.log(this.value.account)
-  this.props.changeAccount(this.value.account)
+  handleChange(value){
+    this.props.getOrders(value)
+    this.props.changeAccount(value)
   }
 }
 
@@ -40,7 +41,16 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeAccount: (value) => {dispatch(changeAccount(value))}
+    changeAccount: (value) => {dispatch(changeAccount(value))},
+    getOrders: (currentAccount) => {
+      dispatch(getOrderBookStart())
+      axios.get("http://localhost:3001/accountOrders?account=" + currentAccount).then(
+        (response) => {
+          dispatch(getOrderBookReceived(response.data))
+        }
+      ).catch((err) => { getOrderBookError() }
+      )
+    }
   }
 }
 

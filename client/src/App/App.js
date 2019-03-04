@@ -9,9 +9,12 @@ import AggregatedOrderBook from'../components/AggregatedOrderBook/AggregatedOrde
 // import { getOrderBookStart, getOrderBookReceived, getOrderBookError} from '../components/AggregatedOrderBook/actions';
 import AccountAdder from '../components/AccountAdd/AccountAdd';
 import AccountSelector from'../components/AccountSelector/AccountSelector'
+import AccountOrderBook from '../components/AccountOrderBook/AccountOrderBook';
+import NewOrderForm from '../components/NewOrderForm/NewOrderForm';
 
 export class App extends Component {
   render() {
+    console.log(this.props.newOrderDelivered)
     return (
       <div className="App">
       
@@ -22,6 +25,8 @@ export class App extends Component {
           <div className = "App-change-accounts">
           <AccountAdder />
           <AccountSelector />
+          <AccountOrderBook />
+          <NewOrderForm />
           </div>
         </header>
 
@@ -37,22 +42,15 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    currentAccount: state.AccountSelector.currentAccount
+    currentAccount: state.AccountSelector.currentAccount,
+    newOrderDelivered: state.NewOrderForm.delivered
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  //   getOrders: () => {
-  //     dispatch(getOrderBookStart())
-  //     axios.get("http://localhost:3001/").then(
-  //       (response) => {
-  //         dispatch(getOrderBookReceived(response.data))
-  //       }
-  //     ).catch((err) => {getOrderBookError()}
-  //     )
-    }
-  // }
+
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

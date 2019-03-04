@@ -1,27 +1,21 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import axios from "axios";
-// import thunk from "redux-thunk";
 import { getOrderBookStart, getOrderBookReceived, getOrderBookError } from './actions';
-import DataTable from '../DataTable/DataTable';
+import DataTable from '../DataTable/DataTableFromArray';
 
 
 export class AggregatedOrderBook extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { order: [1, 2, 3, 4, 5] };
     this.props.getOrders()
     // let n = 10;
-    this.buyQuantity = []
-    this.buyPrice = []
-    this.sellQuantity = []
-    this.sellPrice = []
   }
 
   render() {
     if (this.props.fetched) {
+      console.log(this.props.aggregatedOrderBook[0][1])
       return (
         <div className="AggregatedOrderBook">
         <DataTable headings={["Price", "Quantity", "My Share"]} rows={this.props.aggregatedOrderBook[0][1].reverse()} />
