@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {sendNewOrderStart,sendNewOrderError,newOrderSent} from './actions';
+import { getOrderBookStart, getOrderBookReceived, getOrderBookError } from '../AggregatedOrderBook/actions';
+import { getOrderBookStart as accountStart, getOrderBookReceived as accountRecieved, getOrderBookError as accountError } from '../AccountSelector/actions';
+
 import axios from "axios";
 
 class NewOrderForm extends Component {
@@ -45,7 +48,7 @@ class NewOrderForm extends Component {
   handleNewOrder() {
     this.props.newOrder(
       {
-        name: this.props.account,
+        account: this.props.account,
         quantity: this.quantityRef.current.value,
         price: this.priceRef.current.value,
         action: this.actionType
@@ -74,6 +77,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     newOrder: (newOrder) => {
       dispatch(sendNewOrderStart())
+      dispatch(accountStart())
+      dispatch(getOrderBookStart())
       axios({
         method: "post",
         url: "http://localhost:3001/newOrder",
@@ -81,6 +86,8 @@ const mapDispatchToProps = (dispatch) => {
       }).then(
         (response) => {
           dispatch(newOrderSent())
+          dispatch(getOrderBookReceived(response.data.slice(0,2)))
+          dispatch(accountRecieved(response.data[2]))
         }
       ).catch((err) => { sendNewOrderError() }
       )

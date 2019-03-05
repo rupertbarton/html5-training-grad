@@ -11,10 +11,13 @@ import AccountAdder from '../components/AccountAdd/AccountAdd';
 import AccountSelector from'../components/AccountSelector/AccountSelector'
 import AccountOrderBook from '../components/AccountOrderBook/AccountOrderBook';
 import NewOrderForm from '../components/NewOrderForm/NewOrderForm';
+import TradeHistory from '../components/TradeHistory/TradeHistory';
 
 export class App extends Component {
   render() {
-    console.log(this.props.newOrderDelivered)
+    if (this.props.newOrderDelivered){
+      this.forceUpdate
+    }
     return (
       <div className="App">
       
@@ -23,6 +26,7 @@ export class App extends Component {
           <h1 className="App-title">Rupert's Amazing Trader</h1>
           <h2 className="Account-name">AccountName: {this.props.currentAccount}</h2>
           <div className = "App-change-accounts">
+          <TradeHistory />
           <AccountAdder />
           <AccountSelector />
           <AccountOrderBook />

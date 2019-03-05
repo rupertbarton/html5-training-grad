@@ -2,6 +2,7 @@ import * as actions from './actions';
 
 const INITIAL_STATE = {
     aggregatedOrderBook: [],
+    tradeHistory: [],
     fetching: false,
     fetched: false,
 };
@@ -18,7 +19,8 @@ export default (state =  INITIAL_STATE, action) => {
                 ...state,
                 fetching: false,
                 fetched: true,
-                aggregatedOrderBook: action.payload,
+                aggregatedOrderBook: action.payload[0],
+                tradeHistory: action.payload[1]
             }
         case actions.GET_ORDER_BOOK_ERROR:
             return {

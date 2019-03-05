@@ -46,6 +46,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(getOrderBookStart())
       axios.get("http://localhost:3001/accountOrders?account=" + currentAccount).then(
         (response) => {
+          console.log(response.data)
           dispatch(getOrderBookReceived(response.data))
         }
       ).catch((err) => { getOrderBookError() }

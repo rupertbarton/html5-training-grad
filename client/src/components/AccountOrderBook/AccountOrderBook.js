@@ -12,7 +12,6 @@ export class AccountOrderBook extends Component {
   }
 
   render() {
-    console.log(this.props.AccountOrderBook[0])
     if(this.props.AccountOrderBook==0){
       return(
 <p> No Account Trades Found</p >
@@ -37,7 +36,7 @@ export class AccountOrderBook extends Component {
 
 function mapStateToProps(state) {
   return {
-    AccountOrderBook: state.AccountOrderBook.AccountOrderBook,
+    AccountOrderBook: state.AccountSelector.AccountOrderBook,
     fetched: state.AccountSelector.fetched
   };
 }

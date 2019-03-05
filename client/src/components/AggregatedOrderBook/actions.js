@@ -1,4 +1,4 @@
-export const GET_ORDER_BOOK_START = 'order-book';
+export const GET_ORDER_BOOK_START = 'GET_ORDER_BOOK_START';
 
 export function getOrderBookStart() {
     return {
@@ -6,7 +6,7 @@ export function getOrderBookStart() {
     }
 }
 
-export const GET_ORDER_BOOK_RECEIVED = 'order-book2';
+export const GET_ORDER_BOOK_RECEIVED = 'GET_ORDER_BOOK_RECEIVED';
 
 export function getOrderBookReceived(payload) {
     return {
@@ -15,7 +15,7 @@ export function getOrderBookReceived(payload) {
     }
 }
 
-export const GET_ORDER_BOOK_ERROR = 'order-book3';
+export const GET_ORDER_BOOK_ERROR = 'GET_ORDER_BOOK_ERROR';
 
 export function getOrderBookError(err) {
     return {

@@ -15,12 +15,12 @@ export class AggregatedOrderBook extends Component {
 
   render() {
     if (this.props.fetched) {
-      console.log(this.props.aggregatedOrderBook[0][1])
+      console.log(this.props.aggregatedOrderBook[1])
       return (
         <div className="AggregatedOrderBook">
-        <DataTable headings={["Price", "Quantity", "My Share"]} rows={this.props.aggregatedOrderBook[0][1].reverse()} />
+        <DataTable headings={["Price", "Quantity", "My Share"]} rows={this.props.aggregatedOrderBook[1].reverse()} />
 
-        <DataTable headings={["Price", "Quantity"]} rows={this.props.aggregatedOrderBook[0][0]} />
+        <DataTable headings={["Price", "Quantity"]} rows={this.props.aggregatedOrderBook[0]} />
 
         </div>
       );

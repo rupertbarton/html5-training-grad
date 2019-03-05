@@ -1,4 +1,4 @@
-export const SEND_NEW_ORDER_START = 'order-book7';
+export const SEND_NEW_ORDER_START = 'SEND_NEW_ORDER_START';
 
 export function sendNewOrderStart() {
     return {
@@ -6,16 +6,15 @@ export function sendNewOrderStart() {
     }
 }
 
-export const NEW_ORDER_SENT = 'order-book8';
+export const NEW_ORDER_SENT = 'NEW_ORDER_SENT';
 
-export function newOrderSent(payload) {
+export function newOrderSent() {
     return {
         type: NEW_ORDER_SENT,
-        payload
     }
 }
 
-export const SEND_NEW_ORDER_ERROR = 'order-book9';
+export const SEND_NEW_ORDER_ERROR = 'SEND_NEW_ORDER_ERROR';
 
 export function sendNewOrderError(err) {
     return {
