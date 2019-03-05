@@ -6,8 +6,16 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-routes(app);
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', "http://localhost:3000");
+    res.header('Access-Control-Allow-Methods', 'GET,POST');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+  });
 
-var server = app.listen(3000, function () {
+  routes(app);
+
+
+var server = app.listen(3001, function () {
     console.log("app running on port", server.address().port);
 });
