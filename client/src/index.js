@@ -21,13 +21,11 @@ socket.on('connectionComplete', function (data) {
 
 socket.on('newOrderMade', function (data) {
   store.dispatch(getOrderBookReceived(data.slice(0,2)))
-  console.log("heyoo!")
   socket.emit("requestUpdateAccountOrders", store.getState().AccountSelector.currentAccount)
 });
 
 
 socket.on('accountOrdersSent', function (data){
-  console.log("yoohoo right back at ya")
   store.dispatch(accountRecieved(data))
 })
 

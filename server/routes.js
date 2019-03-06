@@ -45,17 +45,10 @@ var appRouter = function (app, io) {
     io.emit("newOrderMade", [mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.tradeHistory]);
   });
 
-  // io.on("requestUpdateAccountOrders", function (accountId) {
-  //   console.log("yoohoo")
-  //   socket.emit('accountOrdersSent', mainMatcher.orderBook.getAccountOrders(accountId))
-  // })
-
   io.on('connection', function (socket) {
-    console.log("made connection")
     socket.emit('connectionComplete', { hello: 'world' });
 
     socket.on("requestUpdateAccountOrders", function (accountId) {
-      console.log("yoohoo")
       socket.emit('accountOrdersSent', mainMatcher.orderBook.getAccountOrders(accountId))
     });
   })
