@@ -1,6 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var routes = require("./app/routes.js");
+var routes = require("./routes.js");
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -20,13 +20,10 @@ app.use((req, res, next) => {
   next();
 });
 
-routes(app);
+routes(app, io);
 
 
 io.on('connection', function (socket) {
   console.log("made connection")
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+  socket.emit('connectionComplete', { hello: 'world' });
 })

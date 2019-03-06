@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {sendNewOrderStart,sendNewOrderError,newOrderSent} from './actions';
-import { getOrderBookStart, getOrderBookReceived, getOrderBookError } from '../AggregatedOrderBook/actions';
-import { getOrderBookStart as accountStart, getOrderBookReceived as accountRecieved, getOrderBookError as accountError } from '../AccountSelector/actions';
+import { getOrderBookStart, getOrderBookReceived} from '../AggregatedOrderBook/actions';
+import { getOrderBookStart as accountStart, getOrderBookReceived as accountRecieved,} from '../AccountSelector/actions';
 
 import axios from "axios";
 
@@ -26,20 +26,20 @@ class NewOrderForm extends Component {
       <div>
         <form>
           <h2>New Order Form</h2>
-          <div class="form-group">
-            <label for="quantity">Quantity</label>
-            <input type="quantity" ref={this.quantityRef} class="form-control" id="quantity" aria-describedby="quantity" placeholder="Enter Quantity" />
+          <div className="form-group">
+            <label >Quantity</label>
+            <input type="quantity" ref={this.quantityRef} className="form-control" id="quantity" aria-describedby="quantity" placeholder="Enter Quantity" />
           </div>
-          <div class="form-group">
-            <label for="eprice">Price</label>
-            <input type="price" ref={this.priceRef} class="form-control" id="price" placeholder="Enter Price" />
+          <div className="form-group">
+            <label >Price</label>
+            <input type="price" ref={this.priceRef} className="form-control" id="price" placeholder="Enter Price" />
           </div>
-          <button type="button" class={this.buyButton} onClick={() => this.handleActionTypeChange("buy")}>Buy</button>
+          <button type="button" className={this.buyButton} onClick={() => this.handleActionTypeChange("buy")}>Buy</button>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button type="button" class={this.sellButton} onClick={() => this.handleActionTypeChange("sell")}>Sell</button>
+          <button type="button" className={this.sellButton} onClick={() => this.handleActionTypeChange("sell")}>Sell</button>
           <br />
           <br />
-          <button type="button" class="btn btn-primary btn-lg" onClick={() => this.handleNewOrder()}>Submit</button>
+          <button type="button" className="btn btn-primary btn-lg" onClick={() => this.handleNewOrder()}>Submit</button>
         </form>
       </div>
     )
@@ -71,7 +71,9 @@ class NewOrderForm extends Component {
 
 }
 
-const mapStateToProps = state => ({ account: state.AccountSelector.currentAccount });
+const mapStateToProps = state => ({
+   account: state.AccountSelector.currentAccount
+  });
 
 const mapDispatchToProps = (dispatch) => {
   return {

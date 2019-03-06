@@ -1,6 +1,7 @@
-const Matcher = require("../app/matcher");
-const Order = require("../app/order");
-var appRouter = function (app) {
+const Matcher = require("./app/matcher");
+const Order = require("./app/order");
+
+var appRouter = function (app, io) {
 
   const mainMatcher = new Matcher()
 
@@ -26,7 +27,6 @@ var appRouter = function (app) {
 
   app.get("/accountOrders", function (req, res) {      //Load account info
     let name = req.query.account;
-    console.log(mainMatcher.orderBook.getAccountOrders(name))
     res.status(200).send(mainMatcher.orderBook.getAccountOrders(name));
   });
 
@@ -39,13 +39,15 @@ var appRouter = function (app) {
 
     newOrder = new Order(name, price, quantity, action);
     mainMatcher.matcher(newOrder);
-    res.status(201).send([mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.tradeHistory, mainMatcher.orderBook.getAccountOrders(name),]);
-
-    io.Socket.emit("agredgatedOrderBook", aggregatedOrderBooked);
-    io.Socket.emit("agredgatedOrderBook", 
-    aggregatedOrderBooked);
-    io.Socket.emit("agredgatedOrderBook", aggregatedOrderBooked);
+    // res.status(201).send([mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.tradeHistory, mainMatcher.orderBook.getAccountOrders(name),]);
+    res.status(201);
+    io.emit("newOrderMade", [mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.tradeHistory]);
   });
+
+  io.on("requestUpdateAccountOrders", function (accountId) {
+    console.log("yoohoo")
+    socket.emit('accountOrdersSent', mainMatcher.orderBook.getAccountOrders(accountId))
+  })
 }
 
 module.exports = appRouter;

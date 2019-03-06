@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from "axios";
 import DataTable from '../DataTable/DataTableForTradeHistory';
 
 
@@ -30,7 +29,7 @@ export class AggregatedOrderBook extends Component {
 
 function mapStateToProps(state) {
   return {
-    tradeHistory: state.AggregatedOrderBook.tradeHistory,
+    tradeHistory: state.AggregatedOrderBook.tradeHistory.reverse(),
     fetched: state.AggregatedOrderBook.fetched,
     fetching: state.AggregatedOrderBook.fetching
   };

@@ -15,7 +15,6 @@ export class AggregatedOrderBook extends Component {
 
   render() {
     if (this.props.fetched) {
-      console.log(this.props.aggregatedOrderBook[1])
       return (
         <div className="AggregatedOrderBook">
         <DataTable headings={["Price", "Quantity", "My Share"]} rows={this.props.aggregatedOrderBook[1].reverse()} />
