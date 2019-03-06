@@ -28,11 +28,11 @@ class NewOrderForm extends Component {
           <h2>New Order Form</h2>
           <div className="form-group">
             <label >Quantity</label>
-            <input type="quantity" ref={this.quantityRef} className="form-control" id="quantity" aria-describedby="quantity" placeholder="Enter Quantity" />
+            <input type="number" ref={this.quantityRef} className="form-control" id="quantity" aria-describedby="quantity" placeholder="Enter Quantity" />
           </div>
           <div className="form-group">
             <label >Price</label>
-            <input type="price" ref={this.priceRef} className="form-control" id="price" placeholder="Enter Price" />
+            <input type="number" ref={this.priceRef} className="form-control" id="price" placeholder="Enter Price" />
           </div>
           <button type="button" className={this.buyButton} onClick={() => this.handleActionTypeChange("buy")}>Buy</button>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

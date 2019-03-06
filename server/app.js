@@ -22,8 +22,3 @@ app.use((req, res, next) => {
 
 routes(app, io);
 
-
-io.on('connection', function (socket) {
-  console.log("made connection")
-  socket.emit('connectionComplete', { hello: 'world' });
-})

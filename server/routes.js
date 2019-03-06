@@ -1,3 +1,4 @@
+src = "http://yournodeserver/socket.io/socket.io.js"
 const Matcher = require("./app/matcher");
 const Order = require("./app/order");
 
@@ -39,14 +40,24 @@ var appRouter = function (app, io) {
 
     newOrder = new Order(name, price, quantity, action);
     mainMatcher.matcher(newOrder);
-    // res.status(201).send([mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.tradeHistory, mainMatcher.orderBook.getAccountOrders(name),]);
-    res.status(201);
+    res.status(201).send([mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.tradeHistory, mainMatcher.orderBook.getAccountOrders(name),]);
+    // res.status(201);
     io.emit("newOrderMade", [mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.tradeHistory]);
   });
 
-  io.on("requestUpdateAccountOrders", function (accountId) {
-    console.log("yoohoo")
-    socket.emit('accountOrdersSent', mainMatcher.orderBook.getAccountOrders(accountId))
+  // io.on("requestUpdateAccountOrders", function (accountId) {
+  //   console.log("yoohoo")
+  //   socket.emit('accountOrdersSent', mainMatcher.orderBook.getAccountOrders(accountId))
+  // })
+
+  io.on('connection', function (socket) {
+    console.log("made connection")
+    socket.emit('connectionComplete', { hello: 'world' });
+
+    socket.on("requestUpdateAccountOrders", function (accountId) {
+      console.log("yoohoo")
+      socket.emit('accountOrdersSent', mainMatcher.orderBook.getAccountOrders(accountId))
+    });
   })
 }
 
