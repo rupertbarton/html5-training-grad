@@ -20,11 +20,6 @@ export class AccountOrderBook extends Component {
         </div>
       );
     }
-    else if (this.props.fetching) {
-      return (
-        <p>LOADING.....</p>
-      )
-    }
   }
 }
 

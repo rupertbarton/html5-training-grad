@@ -7,6 +7,7 @@ import AccountSelector from '../components/AccountSelector/AccountSelector'
 import AccountOrderBook from '../components/AccountOrderBook/AccountOrderBook';
 import NewOrderForm from '../components/NewOrderForm/NewOrderForm';
 import TradeHistory from '../components/TradeHistory/TradeHistory';
+import D3Graph from '../components/D3Graph/D3Graph';
 
 export class App extends Component {
 
@@ -45,6 +46,9 @@ export class App extends Component {
               <AggregatedOrderBook name={this.props.name} />
             </div>
             <div className="col-xl-6">
+{console.log("asjnsdfnsfdgjn")}
+{console.log(this.props.fetchedAggregatedOrderBook)}
+            { this.props.fetchedAggregatedOrderBook ? (<D3Graph />) : (<div> </div>)}
               <AccountOrderBook />
             </div>
 
@@ -66,7 +70,8 @@ App.propTypes = {
 function mapStateToProps(state) {
   return {
     currentAccount: state.AccountSelector.currentAccount,
-    newOrderDelivered: state.NewOrderForm.delivered
+    newOrderDelivered: state.NewOrderForm.delivered,
+    fetchedAggregatedOrderBook: state.AggregatedOrderBook.fetched
   };
 }
 
