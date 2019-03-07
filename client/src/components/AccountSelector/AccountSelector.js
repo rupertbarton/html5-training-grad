@@ -40,7 +40,7 @@ const mapDispatchToProps = (dispatch) => {
     
     getOrders: (currentAccount) => {
       dispatch(getOrderBookStart())
-      axios.get("http://localhost:3001/accountOrders?account=" + currentAccount).then(
+      axios.get("http://91.224.190.74:3001/accountOrders?account=" + currentAccount).then(
         (response) => {
           dispatch(getOrderBookReceived(response.data))
         }

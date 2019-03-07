@@ -21,7 +21,7 @@ socket.on('connectionComplete', function (data) {
 
 socket.on('newOrderMade', function (data) {
   store.dispatch(getOrderBookReceived(data.slice(0,2)))
-  socket.emit("requestUpdateAccountOrders", store.getState().AccountSelector.currentAccount)
+  socket.emit("requestUpdateAccountOrders", store.getState().AccountSelector.currentAccount, )
 });
 
 

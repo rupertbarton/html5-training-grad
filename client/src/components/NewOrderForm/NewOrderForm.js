@@ -83,13 +83,13 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(getOrderBookStart())
       axios({
         method: "post",
-        url: "http://localhost:3001/newOrder",
+        url: "http://91.224.190.74:3001/newOrder",
       data: newOrder
       }).then(
         (response) => {
           dispatch(newOrderSent())
-          dispatch(getOrderBookReceived(response.data.slice(0,2)))
-          dispatch(accountRecieved(response.data[2]))
+          dispatch(getOrderBookReceived(response.data.slice(0,3)))
+          dispatch(accountRecieved(response.data[3]))
         }
       ).catch((err) => { sendNewOrderError() }
       )

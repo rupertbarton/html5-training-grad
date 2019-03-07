@@ -6,11 +6,11 @@ var appRouter = function (app, io) {
 
   const mainMatcher = new Matcher()
 
-  let c = new Order("a", 5, 5, "sell")
-  let d = new Order("a", 1000, 5, "sell")
+  let c = new Order("c", 5, 5, "sell")
+  let d = new Order("d", 1000, 5, "sell")
 
-  let e = new Order("a", 4.5, 5, "buy")
-  let f = new Order("a", 1, 5, "buy")
+  let e = new Order("e", 4.5, 5, "buy")
+  let f = new Order("f", 1, 5, "buy")
   mainMatcher.matcher(c)
   mainMatcher.matcher(c)
   mainMatcher.matcher(c)
@@ -23,7 +23,8 @@ var appRouter = function (app, io) {
 
   app.get("/", function (req, res) {       //Load all orders and trade history
     aggregate = Number(req.query.aggregate) || 0.01;
-    res.status(200).send([mainMatcher.orderBook.createAgreggatedOrderBook(0.01), mainMatcher.tradeHistory]);
+    res.status(200).send([mainMatcher.orderBook.createAgreggatedOrderBook(0.01), mainMatcher.tradeHistory, mainMatcher.orderBook.createD3Data()]);
+    // res.status(200).send([mainMatcher.orderBook.createAgreggatedOrderBook(0.01), mainMatcher.tradeHistory,]);
   });
 
   app.get("/accountOrders", function (req, res) {      //Load account info
@@ -40,14 +41,16 @@ var appRouter = function (app, io) {
 
     newOrder = new Order(name, price, quantity, action);
     mainMatcher.matcher(newOrder);
-    res.status(201).send([mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.tradeHistory, mainMatcher.orderBook.getAccountOrders(name),]);
+    res.status(201).send([mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.tradeHistory, mainMatcher.orderBook.createD3Data(), mainMatcher.orderBook.getAccountOrders(name)]);
+    // res.status(201).send([mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.tradeHistory, , mainMatcher.orderBook.getAccountOrders(name)]);
     // res.status(201);
-    io.emit("newOrderMade", [mainMatcher.orderBook.createAgreggatedOrderBook(aggregate), mainMatcher.tradeHistory]);
+    // io.emit("newOrderMade", [mainMatcher.orderBook.getAggregatedOrderBook(), mainMatcher.tradeHistory,]);
+    io.emit("newOrderMade", [mainMatcher.orderBook.getAggregatedOrderBook(), mainMatcher.tradeHistory, mainMatcher.orderBook.createD3Data()]);
   });
 
   io.on('connection', function (socket) {
     socket.emit('connectionComplete', { hello: 'world' });
-
+    console.log("Connection made to" + socket.id)
     socket.on("requestUpdateAccountOrders", function (accountId) {
       socket.emit('accountOrdersSent', mainMatcher.orderBook.getAccountOrders(accountId))
     });

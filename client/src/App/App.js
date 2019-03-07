@@ -46,8 +46,6 @@ export class App extends Component {
               <AggregatedOrderBook name={this.props.name} />
             </div>
             <div className="col-xl-6">
-{console.log("asjnsdfnsfdgjn")}
-{console.log(this.props.fetchedAggregatedOrderBook)}
             { this.props.fetchedAggregatedOrderBook ? (<D3Graph />) : (<div> </div>)}
               <AccountOrderBook />
             </div>
