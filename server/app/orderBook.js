@@ -6,8 +6,8 @@ function OrderBook(buy = [], sell = []) {
   this.buyAggregatedOrderBook = [];
   this.sellAggregatedOrderBook = [];
   this.aggregatedOrderBook = [];
-  
-  
+
+
   //Returns a full array of all orders belonging to an account
   this.getAccountOrders = function (accountName) {
     accountOrders = []
@@ -16,7 +16,7 @@ function OrderBook(buy = [], sell = []) {
         accountOrders.push(this.buy[i])
       }
     }
-    
+
     for (i = 0; i < this.sell.length; i++) {
       if (this.sell[i].account === accountName) {
         accountOrders.push(this.sell[i])
@@ -24,7 +24,7 @@ function OrderBook(buy = [], sell = []) {
     }
     return accountOrders;
   }
-  
+
   this.createAgreggatedOrderBook = function (aggregation) {
     this.buyAggregatedOrderBook = [];
     this.sellAggregatedOrderBook = [];
@@ -66,24 +66,53 @@ function OrderBook(buy = [], sell = []) {
     let cumulativeQuantity = 0
     let buys = []
     let sells = []
-    for (i = 0; i < this.buyAggregatedOrderBook.length; i++) {
-      cumulativeQuantity += this.buyAggregatedOrderBook[i][1]
+
+    if (this.buyAggregatedOrderBook.length > 0) {
       buys.push({
-        price:this.buyAggregatedOrderBook[i][0],
-        quantity:cumulativeQuantity
+        price: this.buyAggregatedOrderBook[0][0],
+        quantity: 0
+      })
+      for (i = 0; i < this.buyAggregatedOrderBook.length; i++) {
+        cumulativeQuantity += this.buyAggregatedOrderBook[i][1]
+        buys.push({
+          price: this.buyAggregatedOrderBook[i][0],
+          quantity: cumulativeQuantity
+        })
+      }
+      buys.push({
+        price: 0,
+        quantity: cumulativeQuantity
+      })
+      buys.push({
+        price: 0,
+        quantity: 0
       })
     }
-    console.log("yoohoo")
-    cumulativeQuantity = 0
-    console.log(this.sellAggregatedOrderBook)
-    for (i = this.sellAggregatedOrderBook.length-1; i > -1; i--) {
-      cumulativeQuantity += this.sellAggregatedOrderBook[i][1]
+
+    if (this.sellAggregatedOrderBook.length > 0) {
       sells.push({
-        price:this.sellAggregatedOrderBook[i][1],
-        quantity:cumulativeQuantity
+        price: this.sellAggregatedOrderBook[0][0],
+        quantity: 0
       })
+      cumulativeQuantity = 0
+      for (i = 0; i < this.sellAggregatedOrderBook.length; i++) {
+        cumulativeQuantity += this.sellAggregatedOrderBook[i][1]
+        sells.push({
+          price: this.sellAggregatedOrderBook[i][0],
+          quantity: cumulativeQuantity
+        })
+      }
+      sells.push({
+        price: this.sellAggregatedOrderBook[this.sellAggregatedOrderBook.length - 1][1] + this.sellAggregatedOrderBook[this.sellAggregatedOrderBook.length - 1][1] / 10,
+        quantity: cumulativeQuantity
+      })
+      sells.push({
+        price: this.sellAggregatedOrderBook[this.sellAggregatedOrderBook.length - 1][1] + this.sellAggregatedOrderBook[this.sellAggregatedOrderBook.length - 1][1] / 10,
+        quantity: 0
+      })
+    }
+
+    return ([buys, sells])
   }
-  return([buys])
-}
 }
 module.exports = OrderBook;
