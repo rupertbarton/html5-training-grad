@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import {sendNewOrderStart,sendNewOrderError,newOrderSent} from './actions';
 import { getOrderBookStart, getOrderBookReceived} from '../AggregatedOrderBook/actions';
 import { getOrderBookStart as accountStart, getOrderBookReceived as accountRecieved,} from '../AccountSelector/actions';
+import serverAddress from '../../KeyFiles/serverAddress.js';
+
+
 
 import axios from "axios";
 
@@ -46,6 +49,7 @@ class NewOrderForm extends Component {
   }
 
   handleNewOrder() {
+    console.log(serverAddress + "newOrder");
     this.props.newOrder(
       {
         account: this.props.account,
@@ -72,7 +76,7 @@ class NewOrderForm extends Component {
 }
 
 const mapStateToProps = state => ({
-   account: state.AccountSelector.currentAccount
+   account: state.AccountSelector.currentAccount,
   });
 
 const mapDispatchToProps = (dispatch) => {
@@ -83,7 +87,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(getOrderBookStart())
       axios({
         method: "post",
-        url: "http://91.224.190.74:3001/newOrder",
+        url: serverAddress + "newOrder",
       data: newOrder
       }).then(
         (response) => {

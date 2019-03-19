@@ -7,12 +7,14 @@ import registerServiceWorker from './registerServiceWorker';
 import io from "socket.io-client"
 import {getOrderBookReceived} from './components/AggregatedOrderBook/actions';
 import {getOrderBookReceived as accountRecieved,} from './components/AccountSelector/actions';
-
-
 import configureStore from './KeyFiles/configure-store';
+import {socketAddress} from './KeyFiles/serverAddress.js';
+
+
+
 const store = configureStore();
 
-let socket = io.connect('http://localhost:3001');
+let socket = io.connect(socketAddress);
 
 socket.on('connectionComplete', function (data) {
   console.log(data);
@@ -20,7 +22,7 @@ socket.on('connectionComplete', function (data) {
 });
 
 socket.on('newOrderMade', function (data) {
-  store.dispatch(getOrderBookReceived(data.slice(0,2)))
+  store.dispatch(getOrderBookReceived(data.slice(0,3)))
   socket.emit("requestUpdateAccountOrders", store.getState().AccountSelector.currentAccount, )
 });
 

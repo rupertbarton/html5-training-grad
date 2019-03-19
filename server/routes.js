@@ -1,4 +1,4 @@
-src = "http://yournodeserver/socket.io/socket.io.js"
+// src = "http://yournodeserver/socket.io/socket.io.js"
 const Matcher = require("./app/matcher");
 const Order = require("./app/order");
 
@@ -6,19 +6,31 @@ var appRouter = function (app, io) {
 
   const mainMatcher = new Matcher()
 
-  let c = new Order("c", 5, 5, "sell")
-  let d = new Order("d", 10, 5, "sell")
+  // let s2 = new Order("f", 21, 3, "sell")
+  // let s3 = new Order("e", 19, 5, "sell")
+  // let s1 = new Order("e", 17, 5, "sell")
+  // let s4 = new Order("f", 15, 7, "sell")
+  // let s5 = new Order("e", 13, 9, "sell")
+  // let s6 = new Order("f", 11.1, 11, "sell")
 
-  let e = new Order("e", 4.5, 5, "buy")
-  let f = new Order("f", 1, 5, "buy")
-  mainMatcher.matcher(c)
-  mainMatcher.matcher(c)
-  mainMatcher.matcher(c)
-  mainMatcher.matcher(d)
-  mainMatcher.matcher(d)
-  mainMatcher.matcher(e)
-  mainMatcher.matcher(e)
-  mainMatcher.matcher(f)
+  // let b1 = new Order("e", 1, 5, "buy")
+  // let b2 = new Order("f", 3, 3, "buy")
+  // let b3 = new Order("e", 5, 5, "buy")
+  // let b4 = new Order("f", 7, 7, "buy")
+  // let b5 = new Order("e", 9, 9, "buy")
+  // let b6 = new Order("f", 11, 11, "buy")
+  // mainMatcher.matcher(s1)
+  // mainMatcher.matcher(s2)
+  // mainMatcher.matcher(s3)
+  // mainMatcher.matcher(s4)
+  // mainMatcher.matcher(s5)
+  // mainMatcher.matcher(s6)
+  // mainMatcher.matcher(b1)
+  // mainMatcher.matcher(b2)
+  // mainMatcher.matcher(b3)
+  // mainMatcher.matcher(b4)
+  // mainMatcher.matcher(b5)
+  // mainMatcher.matcher(b6)
 
 
   app.get("/", function (req, res) {       //Load all orders and trade history

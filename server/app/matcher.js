@@ -56,6 +56,7 @@ function Matcher(orderBook = new OrderBook(), tradeHistory = []) {
 
                     if (i == this.sellOrders.length - 1) {
                         this.sellOrders.push(newOrder)
+                        break
                     }
                 }
             }                   //TODO Save trades and record the price of trade
@@ -102,6 +103,7 @@ function Matcher(orderBook = new OrderBook(), tradeHistory = []) {
 
                     if (i == this.buyOrders.length - 1) {
                         this.buyOrders.push(newOrder)
+                        break
                     }
                 }
             }
@@ -116,18 +118,5 @@ function Matcher(orderBook = new OrderBook(), tradeHistory = []) {
     }
 
 }
-
-// let abc = new Matcher()
-
-// let a = new Order("a",2,4,"sell")
-// let b = new Order("a",6,4,"buy")
-// let d = new Order("a",3,7,"buy")
-// let c = new Order("a",1,5,"sell")
-// abc.matcher(a);
-// abc.matcher(b);
-// abc.matcher(d);
-// abc.matcher(c);
-
-// console.log (abc.tradeHistory)
 
 module.exports = Matcher;

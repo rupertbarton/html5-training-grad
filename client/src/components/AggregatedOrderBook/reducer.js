@@ -15,7 +15,7 @@ export default (state =  INITIAL_STATE, action) => {
                 ...state,
                 fetching: true
             };
-        case actions.GET_ORDER_BOOK_RECEIVED: 
+        case actions.GET_ORDER_BOOK_RECEIVED:
         return {
                 ...state,
                 fetching: false,

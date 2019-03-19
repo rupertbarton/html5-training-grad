@@ -21,22 +21,19 @@ export class D3Graph extends Component {
   }
 
   createGraph() {
-    console.log(this.props.data)
-    console.log("zlskjfdgnaselrsgmkasrd;lnkgmadfs;lkmnaer;lgkmnerg;lkmdfh;lkdnfmga[dfmv[oier")
 
     let buys = this.props.data[0]
     let sells = this.props.data[1]
 
-    var svgWidth = 500, svgHeight = 300;
-
-    var svgWidth = 600, svgHeight = 400;
+    var svgWidth = 1000, svgHeight = 600;
     var margin = { top: 20, right: 20, bottom: 30, left: 50 };
     var width = svgWidth - margin.left - margin.right;
     var height = svgHeight - margin.top - margin.bottom;
 
     var svg = d3.select('svg')
-      .attr("width", svgWidth)
-      .attr("height", svgHeight);
+    svg.selectAll("*").remove();
+    svg.attr("width", svgWidth);
+    svg.attr("height", svgHeight);
 
     var g = svg.append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -78,7 +75,8 @@ export class D3Graph extends Component {
 
     g.append("path")
       .datum(buys)
-      .attr("fill", "lightblue")
+      //.attr("fill", "#97965B")
+      .attr("fill", "#01c306")
       .attr("stroke", "steelblue")
       .attr("stroke-linejoin", "round")
       .attr("stroke-linecap", "round")
@@ -87,7 +85,8 @@ export class D3Graph extends Component {
 
     g.append("path")
       .datum(sells)
-      .attr("fill", "red")
+      .attr("fill", "#eb3813")
+      //.attr("fill", "#E06510")
       .attr("stroke", "darkred")
       .attr("stroke-linejoin", "round")
       .attr("stroke-linecap", "round")
@@ -109,7 +108,6 @@ export class D3Graph extends Component {
 
 
 function mapStateToProps(state) {
-  console.log(state.AggregatedOrderBook.graphData)
   return {
     data: state.AggregatedOrderBook.graphData,
   };

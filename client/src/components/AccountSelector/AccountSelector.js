@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import {changeAccount, getOrderBookStart, getOrderBookReceived, getOrderBookError } from './actions';
 // import DataTable from '../DataTable/DataTable';
 import axios from "axios";
+import serverAddress from '../../KeyFiles/serverAddress.js';
+
+
 
 class AccountSelector extends Component {
 
@@ -30,7 +33,7 @@ class AccountSelector extends Component {
 
 function mapStateToProps(state) {
   return {
-    accounts: state.Accounts.accounts
+    accounts: state.Accounts.accounts,
   };
 }
 
@@ -40,7 +43,7 @@ const mapDispatchToProps = (dispatch) => {
     
     getOrders: (currentAccount) => {
       dispatch(getOrderBookStart())
-      axios.get("http://91.224.190.74:3001/accountOrders?account=" + currentAccount).then(
+      axios.get(serverAddress + "accountOrders?account=" + currentAccount).then(
         (response) => {
           dispatch(getOrderBookReceived(response.data))
         }

@@ -19,8 +19,10 @@ export class App extends Component {
 
         <header className="App-header">
           <div className="row container-fluid">
-            <div className="col-xl-1"></div>
-            <div className="col-xl-9">
+            <div className="col-xl-3">
+
+            </div>
+            <div className="col-xl-7">
               <div className="text-center">
                 <h1>Rupert's Amazing Trader</h1>
                 <h2 className="Account-name">AccountName: {this.props.currentAccount}</h2>
@@ -42,10 +44,11 @@ export class App extends Component {
             <div className="col-xl-2 ">
               <NewOrderForm />
             </div>
-            <div className="col-xl-2 ">
+            <div className="col-xl-1 ">
               <AggregatedOrderBook name={this.props.name} />
             </div>
-            <div className="col-xl-6">
+            <div className="col-xl-7">
+            {/* { this.props.fetchedAggregatedOrderBook && (this.props.data[0].length>0 || this.props.data[1].length>0) ? (<D3Graph />) : (<div> </div>)} */}
             { this.props.fetchedAggregatedOrderBook ? (<D3Graph />) : (<div> </div>)}
               <AccountOrderBook />
             </div>
@@ -56,6 +59,7 @@ export class App extends Component {
 
           </div>
         </div>
+          {this.props.serverUrl}
       </div>
     );
   }
@@ -69,7 +73,9 @@ function mapStateToProps(state) {
   return {
     currentAccount: state.AccountSelector.currentAccount,
     newOrderDelivered: state.NewOrderForm.delivered,
-    fetchedAggregatedOrderBook: state.AggregatedOrderBook.fetched
+    fetchedAggregatedOrderBook: state.AggregatedOrderBook.fetched,
+    serverUrl: state.serverUrl,
+    data: state.AggregatedOrderBook.graphData,
   };
 }
 

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import axios from "axios";
 import { getOrderBookStart, getOrderBookReceived, getOrderBookError } from './actions';
 import DataTable from '../DataTable/DataTableFromArray';
+import serverAddress from '../../KeyFiles/serverAddress.js';
+
 
 
 export class AggregatedOrderBook extends Component {
@@ -17,7 +19,7 @@ export class AggregatedOrderBook extends Component {
     if (this.props.fetched) {
       return (
         <div className="AggregatedOrderBook">
-        <DataTable headings={["Price", "Quantity", "My Share"]} rows={this.props.aggregatedOrderBook[1].reverse()} />
+        <DataTable headings={["Price", "Quantity"]} rows={this.props.aggregatedOrderBook[1].reverse()} />
 
         <DataTable headings={["Price", "Quantity"]} rows={this.props.aggregatedOrderBook[0]} />
 
@@ -40,7 +42,7 @@ function mapStateToProps(state) {
   return {
     aggregatedOrderBook: state.AggregatedOrderBook.aggregatedOrderBook,
     fetched: state.AggregatedOrderBook.fetched,
-    fetching: state.AggregatedOrderBook.fetching
+    fetching: state.AggregatedOrderBook.fetching,
   };
 }
 
@@ -48,7 +50,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getOrders: () => {
       dispatch(getOrderBookStart())
-      axios.get("http://91.224.190.74:3001/").then(
+      axios.get(serverAddress).then(
         (response) => {
           dispatch(getOrderBookReceived(response.data))
         }

@@ -103,11 +103,11 @@ function OrderBook(buy = [], sell = []) {
         })
       }
       sells.push({
-        price: this.sellAggregatedOrderBook[this.sellAggregatedOrderBook.length - 1][1] + this.sellAggregatedOrderBook[this.sellAggregatedOrderBook.length - 1][1] / 10,
+        price: this.sellAggregatedOrderBook[this.sellAggregatedOrderBook.length - 1][0] + (this.sellAggregatedOrderBook[this.sellAggregatedOrderBook.length - 1][0] / 10),
         quantity: cumulativeQuantity
       })
       sells.push({
-        price: this.sellAggregatedOrderBook[this.sellAggregatedOrderBook.length - 1][1] + this.sellAggregatedOrderBook[this.sellAggregatedOrderBook.length - 1][1] / 10,
+        price: this.sellAggregatedOrderBook[this.sellAggregatedOrderBook.length - 1][0] + (this.sellAggregatedOrderBook[this.sellAggregatedOrderBook.length - 1][0] / 10),
         quantity: 0
       })
     }
@@ -115,4 +115,5 @@ function OrderBook(buy = [], sell = []) {
     return ([buys, sells])
   }
 }
+
 module.exports = OrderBook;
