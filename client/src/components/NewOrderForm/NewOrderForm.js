@@ -24,6 +24,31 @@ class NewOrderForm extends Component {
     this.handleNewOrder = this.handleNewOrder.bind(this);
   }
 
+  // componentDidMount(){
+  //   let i = 0;
+
+  //   while (i<1000){
+  //     this.props.newOrder(
+  //       {
+  //         account: "a",
+  //         quantity: Math.random()*10,
+  //         price: Math.random()*10,
+  //         action: "buy"
+  //       }
+  //     )
+
+  //     this.props.newOrder(
+  //       {
+  //         account: "a",
+  //         quantity: Math.random()*1000,
+  //         price: Math.random()*1000,
+  //         action: "sell"
+  //       }
+  //     )
+  //     i++
+  //   }
+  // }
+
   render() {
     return (
       <div>
@@ -91,11 +116,14 @@ const mapDispatchToProps = (dispatch) => {
       data: newOrder
       }).then(
         (response) => {
+          console.log(response.data.status)
           dispatch(newOrderSent())
           dispatch(getOrderBookReceived(response.data.slice(0,3)))
           dispatch(accountRecieved(response.data[3]))
         }
-      ).catch((err) => { sendNewOrderError() }
+      ).catch((err) => { 
+        alert(err.response.data.errors[0].defaultMessage)        
+        sendNewOrderError() }
       )
     }
   }
