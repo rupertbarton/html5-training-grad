@@ -67,7 +67,6 @@ describe("getAccountOrders Function", () => {
         });
     
         it("AggregateSells", () => {
-        //console.log(testSellAggregateOrder.createAgreggatedOrderBook(1))
         expect(testSellAggregateOrder.createAgreggatedOrderBook(1)).toEqual([ [], [[1.00,20], [2.00,10], [3.00,10], [4.00,10], [9.00,10] ] ]);
         });
     })

@@ -3,8 +3,6 @@ import * as actions from './actions';
 const INITIAL_STATE = {
     delivering: false,
     delivered: false,
-    aggregatedOrderBook: [],
-    tradeHistory: [],
 };
 
 export default (state =  INITIAL_STATE, action) => {
@@ -19,9 +17,6 @@ export default (state =  INITIAL_STATE, action) => {
                 ...state,
                 delivering: false,
                 delivered: true,
-                // aggregatedOrderBook: action.payload[0],
-                // tradeHistory: action.payload[2],
-                // AccountOrderBook: action.payload[1],
             }
         case actions.SEND_NEW_ORDER_ERROR:
             return {

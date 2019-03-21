@@ -3,6 +3,7 @@ import * as actions from './actions';
 const INITIAL_STATE = {
     aggregatedOrderBook: [],
     tradeHistory: [],
+    graphData: [],
     fetching: false,
     fetched: false,
 };
@@ -14,13 +15,14 @@ export default (state =  INITIAL_STATE, action) => {
                 ...state,
                 fetching: true
             };
-        case actions.GET_ORDER_BOOK_RECEIVED: 
+        case actions.GET_ORDER_BOOK_RECEIVED:
         return {
                 ...state,
                 fetching: false,
                 fetched: true,
                 aggregatedOrderBook: action.payload[0],
-                tradeHistory: action.payload[1]
+                tradeHistory: action.payload[1],
+                graphData: action.payload[2],
             }
         case actions.GET_ORDER_BOOK_ERROR:
             return {

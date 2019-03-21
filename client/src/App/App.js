@@ -1,40 +1,65 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-// import axios from "axios";
-// import thunk from "redux-thunk";
-// import logo from './logo.svg';
+import { connect } from 'react-redux';
 import './App.css';
-import AggregatedOrderBook from'../components/AggregatedOrderBook/AggregatedOrderBook'
-// import { getOrderBookStart, getOrderBookReceived, getOrderBookError} from '../components/AggregatedOrderBook/actions';
+import AggregatedOrderBook from '../components/AggregatedOrderBook/AggregatedOrderBook'
 import AccountAdder from '../components/AccountAdd/AccountAdd';
-import AccountSelector from'../components/AccountSelector/AccountSelector'
+import AccountSelector from '../components/AccountSelector/AccountSelector'
 import AccountOrderBook from '../components/AccountOrderBook/AccountOrderBook';
 import NewOrderForm from '../components/NewOrderForm/NewOrderForm';
 import TradeHistory from '../components/TradeHistory/TradeHistory';
+import D3Graph from '../components/D3Graph/D3Graph';
 
 export class App extends Component {
+
+
   render() {
-    if (this.props.newOrderDelivered){
-      this.forceUpdate
-    }
+
     return (
       <div className="App">
-      
+
         <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <h1 className="App-title">Rupert's Amazing Trader</h1>
-          <h2 className="Account-name">AccountName: {this.props.currentAccount}</h2>
-          <div className = "App-change-accounts">
-          <TradeHistory />
-          <AccountAdder />
-          <AccountSelector />
-          <AccountOrderBook />
-          <NewOrderForm />
+          <div className="row container-fluid">
+            <div className="col-xl-3">
+
+            </div>
+            <div className="col-xl-7">
+              <div className="text-center">
+                <h1>Rupert's Amazing Trader</h1>
+                <h2 className="Account-name">AccountName: {this.props.currentAccount}</h2>
+              </div>
+            </div>
+
+            <div className="col-xl-1">
+              <AccountAdder />
+              <AccountSelector />
+            </div>
+            <div className="col-xl-1">
+            </div>
           </div>
         </header>
 
-        <AggregatedOrderBook name={this.props.name} />
+
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-xl-2 ">
+              <NewOrderForm />
+            </div>
+            <div className="col-xl-1 ">
+              <AggregatedOrderBook name={this.props.name} />
+            </div>
+            <div className="col-xl-7">
+            {/* { this.props.fetchedAggregatedOrderBook && (this.props.data[0].length>0 || this.props.data[1].length>0) ? (<D3Graph />) : (<div> </div>)} */}
+            { this.props.fetchedAggregatedOrderBook ? (<D3Graph />) : (<div> </div>)}
+              <AccountOrderBook />
+            </div>
+
+            <div className="col-xl-2" >
+              <TradeHistory />
+            </div>
+
+          </div>
+        </div>
+          {this.props.serverUrl}
       </div>
     );
   }
@@ -47,7 +72,10 @@ App.propTypes = {
 function mapStateToProps(state) {
   return {
     currentAccount: state.AccountSelector.currentAccount,
-    newOrderDelivered: state.NewOrderForm.delivered
+    newOrderDelivered: state.NewOrderForm.delivered,
+    fetchedAggregatedOrderBook: state.AggregatedOrderBook.fetched,
+    serverUrl: state.serverUrl,
+    data: state.AggregatedOrderBook.graphData,
   };
 }
 

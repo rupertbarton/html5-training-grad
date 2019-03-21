@@ -6,7 +6,7 @@ export const changeAccount = (value) => (
     value
 });
 
-export const GET_ACCOUNT_ORDER_BOOK_START = 'GET_ACCOUNT_ORDER_BOOK_START-book4';
+export const GET_ACCOUNT_ORDER_BOOK_START = 'GET_ACCOUNT_ORDER_BOOK_START';
 
 export function getOrderBookStart() {
     return {

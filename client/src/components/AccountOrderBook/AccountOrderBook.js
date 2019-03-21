@@ -7,10 +7,6 @@ import DataTable from '../DataTable/DataTableFromArrayOfObjects';
 
 export class AccountOrderBook extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     if(this.props.AccountOrderBook==0){
       return(
@@ -23,11 +19,6 @@ export class AccountOrderBook extends Component {
           <DataTable headings={["Price", "Quantity"]} rows={this.props.AccountOrderBook} />
         </div>
       );
-    }
-    else if (this.props.fetching) {
-      return (
-        <p>LOADING.....</p>
-      )
     }
   }
 }

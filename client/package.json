@@ -5,16 +5,19 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "d3": "^5.9.1",
     "prop-types": "^15.6.1",
     "react": "^16.8.3",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.1",
     "redux": "^3.7.2",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "socket.io-client": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
+    "run": "concurrently \"react-scripts start\" \" node ../server/app.js\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

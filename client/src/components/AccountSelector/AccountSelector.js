@@ -3,23 +3,21 @@ import { connect } from 'react-redux';
 import {changeAccount, getOrderBookStart, getOrderBookReceived, getOrderBookError } from './actions';
 // import DataTable from '../DataTable/DataTable';
 import axios from "axios";
+import serverAddress from '../../KeyFiles/serverAddress.js';
+
+
 
 class AccountSelector extends Component {
 
-  constructor(props) {
-    super(props);
-
-  }
-
   render() {
     return (
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div className="dropdown">
+        <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Change Account
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownList" >
+        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownList" >
           {this.props.accounts.map(account => (
-            <a class="dropdown-item" href="#" ref={ this.value = {account} } onClick={ () => this.handleChange(account)}>{account}</a>
+            <a className="dropdown-item" href="#" ref={ this.value = {account} } onClick={ () => this.handleChange(account)}>{account}</a>
           ))}
         </div>
       </div>
@@ -35,18 +33,18 @@ class AccountSelector extends Component {
 
 function mapStateToProps(state) {
   return {
-    accounts: state.Accounts.accounts
+    accounts: state.Accounts.accounts,
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changeAccount: (value) => {dispatch(changeAccount(value))},
+    
     getOrders: (currentAccount) => {
       dispatch(getOrderBookStart())
-      axios.get("http://localhost:3001/accountOrders?account=" + currentAccount).then(
+      axios.get(serverAddress + "accountOrders?account=" + currentAccount).then(
         (response) => {
-          console.log(response.data)
           dispatch(getOrderBookReceived(response.data))
         }
       ).catch((err) => { getOrderBookError() }
