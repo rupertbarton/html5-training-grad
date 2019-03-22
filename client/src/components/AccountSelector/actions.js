@@ -31,3 +31,29 @@ export function getOrderBookError(err) {
         data: err
     }
 }
+
+export const LOGIN_START = 'LOGIN_START';
+
+export function loginStart() {
+    return {
+        type: LOGIN_START,
+    }
+}
+
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+
+export function loginSuccess(payload) {
+    return {
+        type: LOGIN_SUCCESS,
+        data: payload
+    }
+}
+
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+
+export function loginError(err) {
+    return {
+        type: LOGIN_ERROR,
+        data: err
+    }
+}

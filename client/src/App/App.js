@@ -31,7 +31,6 @@ export class App extends Component {
 
             <div className="col-xl-1">
               <AccountAdder />
-              <AccountSelector />
             </div>
             <div className="col-xl-1">
             </div>
@@ -54,6 +53,7 @@ export class App extends Component {
             </div>
 
             <div className="col-xl-2" >
+            <AccountSelector />
               <TradeHistory />
             </div>
 

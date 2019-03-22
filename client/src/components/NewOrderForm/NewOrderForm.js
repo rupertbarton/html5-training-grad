@@ -80,7 +80,8 @@ class NewOrderForm extends Component {
         account: this.props.account,
         quantity: this.quantityRef.current.value,
         price: this.priceRef.current.value,
-        action: this.actionType
+        action: this.actionType,
+        jwt: sessionStorage.getItem("jwt")
       }
     )
   }
@@ -116,7 +117,6 @@ const mapDispatchToProps = (dispatch) => {
       data: newOrder
       }).then(
         (response) => {
-          console.log(response.data.status)
           dispatch(newOrderSent())
           dispatch(getOrderBookReceived(response.data.slice(0,3)))
           dispatch(accountRecieved(response.data[3]))
